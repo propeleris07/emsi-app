@@ -1,0 +1,52 @@
+import { useState } from 'react';
+import { View, useWindowDimensions } from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '@/theme';
+import { groupCardNumber } from '@/utils/format';
+import { Barcode } from './Barcode';
+import { Chip } from './Chip';
+import { Text } from './Text';
+
+interface Props {
+  number: string;
+  initialMode?: 'qr' | 'barcode';
+}
+
+/** Kortelės kodas skenavimui prie kasos: QR arba brūkšninis kodas. */
+export function CardCode({ number, initialMode = 'qr' }: Props) {
+  const { t } = useTranslation();
+  const { radius, spacing } = useTheme();
+  const { width } = useWindowDimensions();
+  const [mode, setMode] = useState(initialMode);
+  const codeWidth = Math.min(width - 96, 320);
+
+  return (
+    <View style={{ alignItems: 'center', gap: spacing.md }}>
+      <View
+        style={{
+          backgroundColor: '#fff',
+          borderRadius: radius.lg,
+          padding: spacing.lg,
+          alignItems: 'center',
+          gap: spacing.sm,
+          minHeight: codeWidth * 0.7 + 60,
+          justifyContent: 'center',
+        }}
+      >
+        {mode === 'qr' ? (
+          <QRCode value={number} size={codeWidth * 0.7} ecl="M" />
+        ) : (
+          <Barcode value={number} width={codeWidth} height={codeWidth * 0.38} />
+        )}
+        <Text style={{ color: '#111', letterSpacing: 2, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
+          {groupCardNumber(number)}
+        </Text>
+      </View>
+      <View style={{ flexDirection: 'row', gap: spacing.sm }}>
+        <Chip label={t('card.qr')} icon="qr-code" selected={mode === 'qr'} onPress={() => setMode('qr')} />
+        <Chip label={t('card.barcode')} icon="barcode" selected={mode === 'barcode'} onPress={() => setMode('barcode')} />
+      </View>
+    </View>
+  );
+}

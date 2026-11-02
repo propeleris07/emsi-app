@@ -1,0 +1,20 @@
+{
+  "demoCredentials": { "companyCode": "304123456", "driverPin": "1234" },
+  "account": {
+    "id": "fleet-demo",
+    "companyName": "UAB „Demo logistika“",
+    "companyCode": "304123456",
+    "driverName": "Demo vairuotojas",
+    "cardNumber": "7399000012345678",
+    "limits": { "dailyEur": 180, "monthlyEur": 2000, "allowedFuels": ["D", "95", "ADBLUE"] },
+    "spentToday": 0,
+    "spentMonth": 0,
+    "vehicles": [
+      { "id": "fv-1", "plate": "LKA123", "nickname": "MAN TGL (sunkvežimis)", "fuel": "D", "plateAutopay": false, "isFleet": true, "lastOdometerKm": 214350 },
+      { "id": "fv-2", "plate": "KTR456", "nickname": "Renault Master", "fuel": "D", "plateAutopay": false, "isFleet": true, "lastOdometerKm": 98720 },
+      { "id": "fv-3", "plate": "JNB789", "nickname": "Škoda Octavia", "fuel": "95", "plateAutopay": false, "isFleet": true, "lastOdometerKm": 61210 }
+    ],
+    "requireOdometer": true,
+    "manoEmsiLinked": true
+  }
+}

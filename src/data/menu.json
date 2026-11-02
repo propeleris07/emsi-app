@@ -1,0 +1,167 @@
+[
+  {
+    "id": "c-americano",
+    "category": "coffee",
+    "name": "Americano",
+    "description": "Vidutinė, 300 ml",
+    "price": 1.99,
+    "en": {
+      "name": "Americano",
+      "description": "Medium, 300 ml"
+    }
+  },
+  {
+    "id": "c-cappuccino",
+    "category": "coffee",
+    "name": "Cappuccino",
+    "description": "Vidutinė, 300 ml",
+    "price": 2.49,
+    "en": {
+      "name": "Cappuccino",
+      "description": "Medium, 300 ml"
+    }
+  },
+  {
+    "id": "c-latte",
+    "category": "coffee",
+    "name": "Latte",
+    "description": "Didelė, 400 ml",
+    "price": 2.79,
+    "en": {
+      "name": "Latte",
+      "description": "Large, 400 ml"
+    }
+  },
+  {
+    "id": "c-flatwhite",
+    "category": "coffee",
+    "name": "Flat white",
+    "description": "Maža, 200 ml",
+    "price": 2.39,
+    "en": {
+      "name": "Flat white",
+      "description": "Small, 200 ml"
+    }
+  },
+  {
+    "id": "c-cocoa",
+    "category": "coffee",
+    "name": "Karštas šokoladas",
+    "description": "Vidutinis, 300 ml",
+    "price": 2.29,
+    "en": {
+      "name": "Hot chocolate",
+      "description": "Medium, 300 ml"
+    }
+  },
+  {
+    "id": "f-hotdog",
+    "category": "hotfood",
+    "name": "Dešrainis",
+    "description": "Su keptais svogūnais ir padažu",
+    "price": 2.49,
+    "en": {
+      "name": "Hot dog",
+      "description": "With fried onions and sauce"
+    }
+  },
+  {
+    "id": "f-hotdog-xl",
+    "category": "hotfood",
+    "name": "Dešrainis XL",
+    "description": "Dviguba dešrelė",
+    "price": 3.49,
+    "en": {
+      "name": "Hot dog XL",
+      "description": "Double sausage"
+    }
+  },
+  {
+    "id": "f-kibinas",
+    "category": "hotfood",
+    "name": "Kibinas su vištiena",
+    "description": "Šviežiai iškeptas",
+    "price": 2.19,
+    "en": {
+      "name": "Chicken kibinas",
+      "description": "Freshly baked"
+    }
+  },
+  {
+    "id": "f-wrap",
+    "category": "hotfood",
+    "name": "Vištienos suktinukas",
+    "description": "Su daržovėmis",
+    "price": 3.99,
+    "en": {
+      "name": "Chicken wrap",
+      "description": "With vegetables"
+    }
+  },
+  {
+    "id": "s-croissant",
+    "category": "snack",
+    "name": "Sviestinis raguolis",
+    "description": "Kepamas kasdien",
+    "price": 1.29,
+    "en": {
+      "name": "Butter croissant",
+      "description": "Baked daily"
+    }
+  },
+  {
+    "id": "s-donut",
+    "category": "snack",
+    "name": "Spurga",
+    "description": "Su vaniliniu įdaru",
+    "price": 0.99,
+    "en": {
+      "name": "Doughnut",
+      "description": "With vanilla filling"
+    }
+  },
+  {
+    "id": "s-sandwich",
+    "category": "snack",
+    "name": "Sumuštinis su sūriu ir kumpiu",
+    "description": "Šaltas",
+    "price": 2.89,
+    "en": {
+      "name": "Ham and cheese sandwich",
+      "description": "Cold"
+    }
+  },
+  {
+    "id": "d-water",
+    "category": "drink",
+    "name": "Mineralinis vanduo 0,5 l",
+    "description": "Gazuotas arba negazuotas",
+    "price": 0.89,
+    "en": {
+      "name": "Mineral water 0.5 l",
+      "description": "Sparkling or still"
+    }
+  },
+  {
+    "id": "d-juice",
+    "category": "drink",
+    "name": "Apelsinų sultys 0,33 l",
+    "description": "100 % sultys",
+    "price": 1.79,
+    "en": {
+      "name": "Orange juice 0.33 l",
+      "description": "100% juice"
+    }
+  },
+  {
+    "id": "d-energy",
+    "category": "drink",
+    "name": "Energinis gėrimas 0,5 l",
+    "description": "",
+    "price": 1.59,
+    "en": {
+      "name": "Energy drink 0.5 l",
+      "description": ""
+    }
+  }
+]

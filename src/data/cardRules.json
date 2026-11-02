@@ -1,0 +1,6 @@
+{
+  "general": { "fuelCtPerL": { "95": 3, "98": 3, "D": 3, "LPG": 3, "ADBLUE": 5 }, "goodsPct": 5, "foodCoffeePct": 10 },
+  "student": { "fuelCtPerL": { "95": 5, "98": 5, "D": 5, "LPG": 5, "ADBLUE": 5 }, "goodsPct": 5, "foodCoffeePct": 15 },
+  "farmer":  { "fuelCtPerL": { "95": 3, "98": 3, "D": 6, "LPG": 3, "ADBLUE": 8 }, "goodsPct": 5, "foodCoffeePct": 10 },
+  "fleet":   { "fuelCtPerL": { "95": 4, "98": 4, "D": 4, "LPG": 3, "ADBLUE": 5 }, "goodsPct": 0, "foodCoffeePct": 0 }
+}

@@ -1,0 +1,5 @@
+[
+  { "id": "pm-wallet", "brand": "applepay", "last4": "", "expiry": "", "holder": "", "isDefault": true },
+  { "id": "pm-visa", "brand": "visa", "last4": "4242", "expiry": "09/29", "holder": "DEMO KLIENTAS", "isDefault": false },
+  { "id": "pm-mc", "brand": "mastercard", "last4": "5454", "expiry": "03/28", "holder": "DEMO KLIENTAS", "isDefault": false }
+]

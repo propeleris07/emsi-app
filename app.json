@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "EMSI",
+    "slug": "emsi-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "lt.emsi.app.demo",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "EMSI naudoja jūsų vietą artimiausiai degalinei rasti."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "lt.emsi.app.demo",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-sharing",
+      "expo-localization",
+      "expo-image",
+      "expo-location",
+      "expo-notifications",
+      "expo-font"
+    ],
+    "scheme": "emsi"
+  }
+}

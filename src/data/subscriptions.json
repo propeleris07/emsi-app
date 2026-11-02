@@ -1,0 +1,28 @@
+[
+  {
+    "kind": "carwash",
+    "name": "Plovimo abonementas",
+    "description": "„Premium“ plovimas kartą per parą 30 dienų bet kurioje EMSI plovykloje.",
+    "priceMonthly": 29.99,
+    "rule": "1 plovimas per parą",
+    "perDay": 1,
+    "en": {
+      "name": "Car wash subscription",
+      "description": "A Premium wash once a day for 30 days at any EMSI car wash.",
+      "rule": "1 wash per day"
+    }
+  },
+  {
+    "kind": "coffee",
+    "name": "Kavos abonementas",
+    "description": "Bet kokia kava kartą per parą 30 dienų bet kurioje EMSI degalinėje.",
+    "priceMonthly": 19.99,
+    "rule": "1 kava per parą",
+    "perDay": 1,
+    "en": {
+      "name": "Coffee subscription",
+      "description": "Any coffee once a day for 30 days at any EMSI station.",
+      "rule": "1 coffee per day"
+    }
+  }
+]

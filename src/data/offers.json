@@ -1,0 +1,159 @@
+[
+  {
+    "id": "promo-friday",
+    "kind": "promoDay",
+    "title": "EMSI penktadienis",
+    "body": "Kiekvieną penktadienį mokant programėle – papildomai –10 ct/l visiems degalams.",
+    "discountLabel": "–10 ct/l",
+    "category": "fuel",
+    "segments": [],
+    "requiresActivation": false,
+    "weekday": 5,
+    "validDays": 60,
+    "fuelCtPerL": 10,
+    "appOnly": true,
+    "en": {
+      "title": "EMSI Friday",
+      "body": "Every Friday, pay in the app and get an extra 10 ct/l off all fuels."
+    }
+  },
+  {
+    "id": "promo-monday-coffee",
+    "kind": "promoDay",
+    "title": "Kavos pirmadienis",
+    "body": "Kiekvieną pirmadienį – antra kava nemokamai su EMSI kortele.",
+    "discountLabel": "1+1",
+    "category": "coffee",
+    "segments": [],
+    "requiresActivation": false,
+    "weekday": 1,
+    "validDays": 60,
+    "en": {
+      "title": "Coffee Monday",
+      "body": "Every Monday, your second coffee is free with your EMSI card."
+    }
+  },
+  {
+    "id": "coupon-coffee",
+    "kind": "coupon",
+    "title": "Kava už 0,99 €",
+    "body": "Bet kokio dydžio kava už 0,99 €. Galioja vieną kartą.",
+    "discountLabel": "0,99 €",
+    "category": "coffee",
+    "segments": [],
+    "requiresActivation": true,
+    "validDays": 28,
+    "en": {
+      "title": "Coffee for €0.99",
+      "body": "Any size coffee for €0.99. Valid once."
+    }
+  },
+  {
+    "id": "coupon-wash",
+    "kind": "coupon",
+    "title": "–30 % plovimui „Premium“",
+    "body": "Nuolaida plovimo programai „Premium“, perkant programėlėje.",
+    "discountLabel": "–30 %",
+    "category": "carwash",
+    "segments": [],
+    "requiresActivation": true,
+    "validDays": 23,
+    "productIds": [
+      "premium"
+    ],
+    "discountPct": 30,
+    "en": {
+      "title": "30% off the Premium wash",
+      "body": "Discount on the Premium wash programme when bought in the app."
+    }
+  },
+  {
+    "id": "coupon-hotdog",
+    "kind": "coupon",
+    "title": "Dešrainis + kava = 2,99 €",
+    "body": "Pietų pasiūlymas visose EMSI degalinėse su maistu.",
+    "discountLabel": "2,99 €",
+    "category": "food",
+    "segments": [],
+    "requiresActivation": true,
+    "validDays": 28,
+    "en": {
+      "title": "Hot dog + coffee = €2.99",
+      "body": "Lunch deal at all EMSI stations with food."
+    }
+  },
+  {
+    "id": "seg-student",
+    "kind": "segment",
+    "title": "Studentams: –20 % kavai",
+    "body": "Rodyk studento kortelę programėlėje ir gauk –20 % bet kuriai kavai sesijos metu.",
+    "discountLabel": "–20 %",
+    "category": "coffee",
+    "segments": [
+      "student"
+    ],
+    "requiresActivation": true,
+    "validDays": 59,
+    "en": {
+      "title": "Students: 20% off coffee",
+      "body": "Show your student card in the app and get 20% off any coffee during exam season."
+    }
+  },
+  {
+    "id": "seg-farmer",
+    "kind": "segment",
+    "title": "Ūkininkams: –8 ct/l dyzelinui",
+    "body": "Rudens sezono pasiūlymas ūkininkams – dyzelinui papildoma nuolaida iki lapkričio pabaigos.",
+    "discountLabel": "–8 ct/l",
+    "category": "fuel",
+    "segments": [
+      "farmer"
+    ],
+    "requiresActivation": true,
+    "validDays": 28,
+    "fuelCtPerL": 8,
+    "fuels": [
+      "D"
+    ],
+    "en": {
+      "title": "Farmers: 8 ct/l off diesel",
+      "body": "Autumn season deal for farmers – extra diesel discount until the end of November."
+    }
+  },
+  {
+    "id": "coupon-adblue",
+    "kind": "coupon",
+    "title": "AdBlue 10 l – 7,99 €",
+    "body": "AdBlue kanistras 10 l už specialią kainą.",
+    "discountLabel": "7,99 €",
+    "category": "shop",
+    "segments": [],
+    "requiresActivation": true,
+    "validDays": 43,
+    "en": {
+      "title": "AdBlue 10 l – €7.99",
+      "body": "A 10 l AdBlue canister at a special price."
+    }
+  },
+  {
+    "id": "coupon-fuel-weekend",
+    "kind": "coupon",
+    "title": "–5 ct/l kelionei",
+    "body": "Aktyvuok ir gauk papildomą –5 ct/l nuolaidą benzinui 95 ir dyzelinui, mokant programėle.",
+    "discountLabel": "–5 ct/l",
+    "category": "fuel",
+    "segments": [],
+    "requiresActivation": true,
+    "fuelCtPerL": 5,
+    "fuels": [
+      "95",
+      "D"
+    ],
+    "appOnly": true,
+    "validDays": 14,
+    "en": {
+      "title": "5 ct/l off for your trip",
+      "body": "Activate to get an extra 5 ct/l off petrol 95 and diesel when paying in the app."
+    }
+  }
+]

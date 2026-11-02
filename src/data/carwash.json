@@ -1,0 +1,87 @@
+{
+  "products": [
+    {
+      "id": "basic",
+      "name": "Bazinis",
+      "description": "Greitas išorės plovimas ir džiovinimas.",
+      "price": 6.99,
+      "durationMin": 5,
+      "features": [
+        "Aktyvios putos",
+        "Plovimas",
+        "Džiovinimas"
+      ],
+      "en": {
+        "description": "Quick exterior wash and dry.",
+        "features": [
+          "Active foam",
+          "Wash",
+          "Drying"
+        ]
+      }
+    },
+    {
+      "id": "premium",
+      "name": "Premium",
+      "description": "Populiariausias: su dugno plovimu ir ratlankiais.",
+      "price": 9.99,
+      "durationMin": 7,
+      "features": [
+        "Aktyvios putos",
+        "Dugno plovimas",
+        "Ratlankių valymas",
+        "Džiovinimas"
+      ],
+      "en": {
+        "description": "Most popular: with underbody wash and wheel cleaning.",
+        "features": [
+          "Active foam",
+          "Underbody wash",
+          "Wheel cleaning",
+          "Drying"
+        ]
+      }
+    },
+    {
+      "id": "ultra",
+      "name": "Ultra",
+      "description": "Pilnas plovimas su vaško apsauga.",
+      "price": 12.99,
+      "durationMin": 9,
+      "features": [
+        "Viskas iš „Premium“",
+        "Karštas vaškas",
+        "Blizgesio skalavimas"
+      ],
+      "en": {
+        "description": "Full wash with wax protection.",
+        "features": [
+          "Everything in Premium",
+          "Hot wax",
+          "Shine rinse"
+        ]
+      }
+    },
+    {
+      "id": "ultra-plus",
+      "name": "Ultra+",
+      "description": "Maksimali priežiūra: keramikinė apsauga ir dvigubas džiovinimas.",
+      "price": 15.99,
+      "durationMin": 12,
+      "features": [
+        "Viskas iš „Ultra“",
+        "Keraminė danga",
+        "Dvigubas džiovinimas"
+      ],
+      "en": {
+        "description": "Maximum care: ceramic protection and double drying.",
+        "features": [
+          "Everything in Ultra",
+          "Ceramic coating",
+          "Double drying"
+        ]
+      }
+    }
+  ],
+  "codeValidDays": 14
+}
