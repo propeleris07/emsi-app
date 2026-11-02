@@ -38,6 +38,12 @@ npx tsc --noEmit     # tipų patikra
 npx expo-doctor      # projekto konfigūracijos patikra
 ```
 
+### Web versija (be telefono)
+Naujausia versija automatiškai skelbiama adresu **<https://propeleris07.github.io/emsi-app/>** – kiekvieną kartą įkėlus pakeitimus į `main` šaką (GitHub Actions: `.github/workflows/deploy-web.yml`).
+Patogiausia atidaryti telefone arba siauriname naršyklės lange. Web versijoje žemėlapis ir telefono pranešimai nerodomi – tam naudokite Expo Go.
+
+Kodas: <https://github.com/propeleris07/emsi-app>
+
 ---
 
 ## 2. Demonstraciniai prisijungimo duomenys
