@@ -139,7 +139,30 @@
     "food": "Kava ir maistas",
     "plate": "Pagal numerį",
     "alerts": "Kainų signalai",
-    "merchBody": "Kepuraitės, puodeliai ir kt. – atsiimk degalinėje"
+    "merchBody": "Kepuraitės, puodeliai ir kt. – atsiimk degalinėje",
+    "myDiscountCard": "Mano nuolaidų kortelė",
+    "savedShort": "Šiais metais sutaupei {{amount}}",
+    "quickTitle": "Greitosios funkcijos",
+    "coffeePromoTitle": "Kava su nuolaida",
+    "coffeePromoBody": "Atrask šios savaitės pasiūlymus",
+    "quick": {
+      "stations": "Degalinės",
+      "stationsSub": "Žemėlapyje",
+      "prices": "Degalų",
+      "pricesSub": "kainos",
+      "offers": "Pasiūlymai",
+      "offersSub": "ir akcijos",
+      "card": "Mano",
+      "cardSub": "kortelė",
+      "carwash": "Plovykla",
+      "carwashSub": "Kodai",
+      "plate": "Pagal",
+      "plateSub": "numerį",
+      "alerts": "Kainų",
+      "alertsSub": "signalai",
+      "merch": "Atributika",
+      "merchSub": "Parduotuvė"
+    }
   },
   "pay": {
     "title": "Mokėti už kurą",

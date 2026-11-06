@@ -14,6 +14,8 @@ export const photos = {
   carwash: require('../../assets/images/carwash.jpg'),
   fuel: require('../../assets/images/fuel.jpg'),
   road: require('../../assets/images/road.jpg'),
+  /** Pradžios ekrano viršus. Pakeiskite tikra EMSI degalinės nuotrauka (tas pats failo vardas). */
+  station: require('../../assets/images/station.jpg'),
 } satisfies Record<string, number>;
 
 export type PhotoKey = keyof typeof photos;

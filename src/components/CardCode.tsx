@@ -16,7 +16,7 @@ interface Props {
 /** Kortelės kodas skenavimui prie kasos: QR arba brūkšninis kodas. */
 export function CardCode({ number, initialMode = 'qr' }: Props) {
   const { t } = useTranslation();
-  const { radius, spacing } = useTheme();
+  const { colors, radius, spacing } = useTheme();
   const { width } = useWindowDimensions();
   const [mode, setMode] = useState(initialMode);
   const codeWidth = Math.min(width - 96, 320);
@@ -27,13 +27,32 @@ export function CardCode({ number, initialMode = 'qr' }: Props) {
         style={{
           backgroundColor: '#fff',
           borderRadius: radius.lg,
-          padding: spacing.lg,
+          padding: spacing.xl,
           alignItems: 'center',
           gap: spacing.sm,
           minHeight: codeWidth * 0.7 + 60,
           justifyContent: 'center',
         }}
       >
+        {/* Skenavimo rėmelio kampai */}
+        {(['tl', 'tr', 'bl', 'br'] as const).map((c) => (
+          <View
+            key={c}
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              width: 26,
+              height: 26,
+              borderColor: colors.primary,
+              ...(c[0] === 't' ? { top: 6, borderTopWidth: 3 } : { bottom: 6, borderBottomWidth: 3 }),
+              ...(c[1] === 'l' ? { left: 6, borderLeftWidth: 3 } : { right: 6, borderRightWidth: 3 }),
+              ...(c === 'tl' && { borderTopLeftRadius: 10 }),
+              ...(c === 'tr' && { borderTopRightRadius: 10 }),
+              ...(c === 'bl' && { borderBottomLeftRadius: 10 }),
+              ...(c === 'br' && { borderBottomRightRadius: 10 }),
+            }}
+          />
+        ))}
         {mode === 'qr' ? (
           <QRCode value={number} size={codeWidth * 0.7} ecl="M" />
         ) : (

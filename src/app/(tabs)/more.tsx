@@ -1,4 +1,6 @@
+import { View } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import Constants from 'expo-constants';
 import { Divider, ListItem, Screen, Surface, Text } from '@/components';
@@ -9,7 +11,7 @@ import { formatPhone } from '@/utils/format';
 export default function MoreTab() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { spacing } = useTheme();
+  const { colors, spacing } = useTheme();
   const user = useSession((s) => s.user);
 
   return (
@@ -18,9 +20,18 @@ export default function MoreTab() {
         {t('more.title')}
       </Text>
       {user ? (
-        <Text tone="muted" style={{ marginTop: -spacing.sm }}>
-          {formatPhone(user.phone)}
-        </Text>
+        <Surface onPress={() => router.push('/settings/profile')} style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md }}>
+          <View style={{ width: 52, height: 52, borderRadius: 26, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' }}>
+            <Ionicons name="person" size={26} color={colors.primary} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text variant="h3">{[user.firstName, user.lastName].filter(Boolean).join(' ') || t('settings.profile')}</Text>
+            <Text variant="small" tone="muted">
+              {formatPhone(user.phone)}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={18} color={colors.tabInactive} />
+        </Surface>
       ) : null}
 
       <Surface padded={false} style={{ overflow: 'hidden' }}>

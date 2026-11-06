@@ -68,8 +68,8 @@ Norėdami pradėti iš naujo: **Daugiau → Nustatymai → Atsijungti** (arba **
 |---|---|
 | **Logotipas** | `assets/logo.png` – pakeiskite failą tuo pačiu pavadinimu (rekomenduojama ~490×203 px, permatomas fonas). Jei proporcijos kitos – pataisykite `RATIO` faile `src/components/Logo.tsx`. |
 | **Programėlės ikona ir užsklanda** | `assets/icon.png`, `assets/splash-icon.png`, `assets/android-icon-*.png`; pavadinimas – `app.json` (`expo.name`). |
-| **Spalvos, šriftų dydžiai, tarpai, šešėliai** | `src/config/theme.ts` – prekės ženklo spalvos `brand` (žalia `#08783D`, geltona `#FFD21F`, šviesiai pilka `#F5F6F5`, tekstas `#202824`), šviesi (`light`) ir tamsi (`dark`) paletės, gradientai, apvalinimai (`radius`) ir šešėliai (`makeShadows`). |
-| **Nuotraukos** (pasiūlymai, kava, plovykla) | Failai `assets/images/`, susiejimas – `src/config/images.ts` (`OFFER_PHOTOS` – kuri nuotrauka kuriam pasiūlymui). |
+| **Spalvos, šriftų dydžiai, tarpai, šešėliai** | `src/config/theme.ts` – prekės ženklo spalvos `brand` (žalia `#08783D`, geltona `#FFD21F`, šviesiai pilka `#F5F6F5`, tekstas `#202824`), šviesi (`light`, numatytoji) ir tamsi (`dark`, įjungiama nustatymuose) paletės, gradientai, apvalinimai (`radius`) ir šešėliai (`makeShadows`). |
+| **Nuotraukos** (pradžios ekranas, pasiūlymai, kava, plovykla) | Failai `assets/images/`, susiejimas – `src/config/images.ts` (`OFFER_PHOTOS` – kuri nuotrauka kuriam pasiūlymui). |
 | **Atributika** | Prekės – `src/data/merch.json`; nuotraukos – žr. skyrelį „Atributikos nuotraukos“ žemiau. |
 | **Funkcijų jungikliai** | `src/config/featureFlags.ts` – pvz. `competitorPriceComparison: true` įjungia kainų palyginimą su konkurentais. |
 | **Tekstai (LT / EN)** | `src/i18n/lt.json`, `src/i18n/en.json`. |
@@ -113,6 +113,7 @@ Visos nuotraukos – iš [Unsplash](https://unsplash.com), naudojamos pagal nemo
 | `drink.jpg` | Julia D'Alkmin |
 | `carwash.jpg` | Clarence Tioh |
 | `fuel.jpg` | engin akyurt |
+| `station.jpg` (pradžios ekrano viršus – pakeiskite tikra EMSI degalinės nuotrauka) | engin akyurt |
 | `road.jpg` | Anees Ur Rehman |
 
 Žemėlapis naršyklėje – © [OpenStreetMap](https://www.openstreetmap.org/copyright) bendraautoriai (Leaflet biblioteka). Viešai programėlei su dideliu srautu reikėtų komercinio žemėlapių tiekėjo (OSM serverių naudojimo taisyklės riboja apkrovą).

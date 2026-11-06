@@ -139,7 +139,30 @@
     "food": "Coffee & food",
     "plate": "Pay by plate",
     "alerts": "Price alerts",
-    "merchBody": "Caps, mugs and more – pick up at a station"
+    "merchBody": "Caps, mugs and more – pick up at a station",
+    "myDiscountCard": "My discount card",
+    "savedShort": "Saved {{amount}} this year",
+    "quickTitle": "Quick actions",
+    "coffeePromoTitle": "Coffee on offer",
+    "coffeePromoBody": "Discover this week's deals",
+    "quick": {
+      "stations": "Stations",
+      "stationsSub": "On the map",
+      "prices": "Fuel",
+      "pricesSub": "prices",
+      "offers": "Offers",
+      "offersSub": "and deals",
+      "card": "My",
+      "cardSub": "card",
+      "carwash": "Car wash",
+      "carwashSub": "Codes",
+      "plate": "Pay by",
+      "plateSub": "plate",
+      "alerts": "Price",
+      "alertsSub": "alerts",
+      "merch": "Merch",
+      "merchSub": "Shop"
+    }
   },
   "pay": {
     "title": "Pay for fuel",

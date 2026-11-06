@@ -22,7 +22,8 @@ interface SettingsState {
 export const useSettings = create<SettingsState>()(
   persist(
     (set) => ({
-      themeMode: 'system',
+      // Numatytoji – šviesi tema (balta ir šviesiai pilka, kaip dizaino gairėse).
+      themeMode: 'light',
       language: 'lt',
       fleetMode: false,
       notifications: { priceAlerts: true, receipts: true, offers: true, reminders: true },
@@ -31,6 +32,15 @@ export const useSettings = create<SettingsState>()(
       setFleetMode: (fleetMode) => set({ fleetMode }),
       setNotification: (kind, on) => set((s) => ({ notifications: { ...s.notifications, [kind]: on } })),
     }),
-    { name: 'emsi.settings', storage: persistStorage },
+    {
+      name: 'emsi.settings',
+      storage: persistStorage,
+      version: 1,
+      // v0 numatytoji buvo „system“ – tamsiuose telefonuose rodė tamsią temą. Perjungiame į šviesią.
+      migrate: (state, version) => {
+        const s = state as SettingsState;
+        return version < 1 && s.themeMode === 'system' ? { ...s, themeMode: 'light' } : s;
+      },
+    },
   ),
 );
