@@ -13,6 +13,7 @@ import { MockTransactionService } from './mock/transactions';
 import { MockCarWashService } from './mock/carwash';
 import { MockSubscriptionService } from './mock/subscriptions';
 import { MockFoodService } from './mock/food';
+import { MockMerchService } from './mock/merch';
 import { MockPriceAlertService, MockVehicleService } from './mock/vehicles';
 import { MockDemoService } from './mock/demo';
 import { LocalNotificationService } from './device/notifications';
@@ -32,6 +33,7 @@ export const services: Services = {
   carwash: new MockCarWashService(),
   subscriptions: new MockSubscriptionService(),
   food: new MockFoodService(),
+  merch: new MockMerchService(),
   vehicles: new MockVehicleService(),
   priceAlerts: new MockPriceAlertService(),
   notifications: new LocalNotificationService(),

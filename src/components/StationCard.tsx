@@ -26,13 +26,13 @@ export function OpenStatus({ station }: { station: StationWithDistance }) {
 
 export function StationCard({ station, onPress, right }: { station: StationWithDistance; onPress?: () => void; right?: React.ReactNode }) {
   const lang = useLang();
-  const { colors, spacing } = useTheme();
+  const { colors, spacing, radius } = useTheme();
   return (
     <Surface onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md }}>
       <View
-        style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' }}
+        style={{ width: 44, height: 44, borderRadius: radius.sm + 2, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' }}
       >
-        <Ionicons name="location" size={22} color={colors.primary} />
+        <Ionicons name="location-outline" size={22} color={colors.primary} />
       </View>
       <View style={{ flex: 1, gap: 2 }}>
         <Text variant="bodyStrong" numberOfLines={1}>

@@ -18,6 +18,9 @@ import type {
   FuelType,
   LoyaltyCard,
   MenuItem,
+  CartLine,
+  MerchOrder,
+  MerchProduct,
   Offer,
   PaymentMethod,
   PayMode,
@@ -162,6 +165,12 @@ export interface SubscriptionService {
   useToday(userId: string, id: string): Promise<DailyCode>;
 }
 
+export interface MerchService {
+  listProducts(): Promise<MerchProduct[]>;
+  /** Užsakymas atsiėmimui degalinėje (demonstracinis apmokėjimas). */
+  placeOrder(input: { userId: string; lines: CartLine[]; stationId: string; paymentMethodId: string }): Promise<MerchOrder>;
+}
+
 export interface FoodService {
   getMenu(): Promise<MenuItem[]>;
   getStampCard(userId: string): Promise<StampCard>;
@@ -223,6 +232,7 @@ export interface Services {
   carwash: CarWashService;
   subscriptions: SubscriptionService;
   food: FoodService;
+  merch: MerchService;
   vehicles: VehicleService;
   priceAlerts: PriceAlertService;
   notifications: NotificationService;

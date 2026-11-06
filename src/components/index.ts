@@ -1,6 +1,9 @@
 export * from './Text';
 export * from './Button';
 export * from './Surface';
+export * from './PressableScale';
+export * from './PhotoBanner';
+export * from './QuantityStepper';
 export * from './Screen';
 export * from './Chip';
 export * from './ListItem';
@@ -26,3 +29,4 @@ export * from './SubscriptionCard';
 export * from './LimitBar';
 export * from './Segmented';
 export * from './CompetitorBanner';
+export * from './MerchImage';

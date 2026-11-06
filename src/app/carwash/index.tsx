@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { Button, Divider, ListItem, Screen, SectionHeader, SubscriptionCard, Surface, Text } from '@/components';
+import { Button, Divider, ListItem, PhotoBanner, Screen, SectionHeader, SubscriptionCard, Surface, Text } from '@/components';
+import { photos } from '@/config/images';
 import { useLang } from '@/hooks/useLang';
 import type { CarWashProduct, WashCode } from '@/models';
 import { services } from '@/services';
@@ -32,7 +33,7 @@ export default function CarWash() {
 
   return (
     <Screen>
-      <Text tone="muted">{t('carwash.intro')}</Text>
+      <PhotoBanner source={photos.carwash} title={t('carwash.heroTitle')} subtitle={t('carwash.intro')} height={170} />
 
       {activeCodes.length + otherCodes.length > 0 ? (
         <>

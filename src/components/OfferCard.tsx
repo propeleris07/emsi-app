@@ -1,11 +1,15 @@
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import type { Offer } from '@/models';
 import { brand } from '@/config/theme';
+import { offerPhoto } from '@/config/images';
 import { useLang } from '@/hooks/useLang';
 import { useTheme } from '@/theme';
 import { formatDate } from '@/utils/format';
+import { outlineIcon } from '@/utils/icons';
 import { Button } from './Button';
 import { Surface } from './Surface';
 import { Text } from './Text';
@@ -23,7 +27,7 @@ const COLORS: Record<Offer['category'], string> = {
   carwash: brand.blue,
   food: brand.red,
   coffee: '#8B5A2B',
-  shop: '#E89B00',
+  shop: '#D98E00',
 };
 
 export function isPromoToday(offer: Offer, now = new Date()): boolean {
@@ -57,20 +61,29 @@ export function OfferCard({ offer, activated, onPress, onActivate, activating, w
 
   return (
     <Surface onPress={onPress} padded={false} style={{ width, overflow: 'hidden' }}>
-      <View style={{ backgroundColor: color, padding: spacing.lg, flexDirection: 'row', alignItems: 'center', gap: spacing.sm }}>
-        <Ionicons name={OFFER_ICONS[offer.category]} size={22} color="#fff" />
-        <Text style={{ color: '#fff', fontSize: 24, fontWeight: '800', flex: 1 }} numberOfLines={1}>
-          {offer.discountLabel}
-        </Text>
-        {today ? (
-          <View style={{ backgroundColor: colors.accent, borderRadius: radius.pill, paddingHorizontal: 8, paddingVertical: 2 }}>
-            <Text variant="caption" style={{ color: colors.onAccent, fontWeight: '800' }}>
-              {t('offers.today')}
-            </Text>
+      {/* Nuotrauka su nuolaida ant jos */}
+      <View style={{ height: onActivate ? 150 : 124 }}>
+        <Image source={offerPhoto(offer)} style={StyleSheet.absoluteFill} contentFit="cover" transition={250} />
+        <LinearGradient colors={['rgba(8,24,16,0.05)', 'rgba(8,24,16,0.75)']} style={StyleSheet.absoluteFill} />
+        <View style={{ position: 'absolute', top: spacing.md, left: spacing.md, right: spacing.md, flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: 'rgba(255,255,255,0.92)', alignItems: 'center', justifyContent: 'center' }}>
+            <Ionicons name={outlineIcon(OFFER_ICONS[offer.category])} size={18} color={color} />
           </View>
-        ) : null}
+          {today ? (
+            <View style={{ backgroundColor: colors.accent, borderRadius: radius.pill, paddingHorizontal: 10, paddingVertical: 4, alignSelf: 'center' }}>
+              <Text variant="caption" style={{ color: colors.onAccent, fontWeight: '800' }}>
+                {t('offers.today')}
+              </Text>
+            </View>
+          ) : null}
+        </View>
+        <View style={{ position: 'absolute', left: spacing.lg, right: spacing.lg, bottom: spacing.md }}>
+          <Text style={{ color: '#fff', fontSize: 26, lineHeight: 30, fontWeight: '800', letterSpacing: -0.5 }} numberOfLines={1}>
+            {offer.discountLabel}
+          </Text>
+        </View>
       </View>
-      <View style={{ padding: spacing.lg, gap: 4 }}>
+      <View style={{ padding: spacing.lg, paddingTop: spacing.md, gap: 4 }}>
         <Text variant="bodyStrong" numberOfLines={2}>
           {offer.title}
         </Text>

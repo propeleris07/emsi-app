@@ -4,6 +4,7 @@ import { useSession } from './session';
 import { useSettings } from './settings';
 import { useFleetStore } from './fleet';
 import { useOffersStore } from './offers';
+import { useCart } from './cart';
 
 export { useCardStore, useSession, useSettings };
 
@@ -25,6 +26,7 @@ export function resetAllStores() {
   useCardStore.getState().reset();
   useFleetStore.setState({ account: null, loaded: false });
   useOffersStore.setState({ offers: [], activated: [] });
+  useCart.getState().clear();
   useSettings.getState().setFleetMode(false);
   useSession.getState().logout();
 }

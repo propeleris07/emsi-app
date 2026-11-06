@@ -39,6 +39,8 @@ function RootStack() {
           headerTitleStyle: { color: colors.text },
           headerShadowVisible: false,
           headerBackButtonDisplayMode: 'minimal',
+          // iOS jau turi slinkimo perėjimą; Android – suvienodiname.
+          animation: Platform.OS === 'android' ? 'slide_from_right' : 'default',
           contentStyle: { backgroundColor: colors.background },
         }}
       >
@@ -65,6 +67,9 @@ function RootStack() {
           <Stack.Screen name="carwash/code/[id]" options={{ title: '' }} />
           <Stack.Screen name="food/index" options={{ title: t('food.title') }} />
           <Stack.Screen name="plate/index" options={{ title: t('plate.title') }} />
+          <Stack.Screen name="merch/index" options={{ title: t('merch.title') }} />
+          <Stack.Screen name="merch/[id]" options={{ title: '' }} />
+          <Stack.Screen name="merch/cart" options={{ title: t('merch.cart') }} />
           <Stack.Screen name="plate/vehicle" options={{ presentation: 'modal', title: '' }} />
           <Stack.Screen name="plate/arrive" options={{ title: t('plate.arriveTitle') }} />
           <Stack.Screen name="prices/alerts" options={{ title: t('alerts.title') }} />

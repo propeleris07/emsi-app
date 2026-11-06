@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import { useColorScheme } from 'react-native';
-import { palettes, radius, spacing, typography, type Theme } from '@/config/theme';
+import { makeShadows, palettes, radius, spacing, typography, type Theme } from '@/config/theme';
 import { useSettings } from '@/store';
 
 const ThemeContext = createContext<Theme | null>(null);
@@ -10,7 +10,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const mode = useSettings((s) => s.themeMode);
   const isDark = mode === 'system' ? system === 'dark' : mode === 'dark';
   const theme = useMemo<Theme>(
-    () => ({ colors: isDark ? palettes.dark : palettes.light, isDark, spacing, radius, typography }),
+    () => {
+      const colors = isDark ? palettes.dark : palettes.light;
+      return { colors, isDark, spacing, radius, typography, shadows: makeShadows(colors.shadow, isDark) };
+    },
     [isDark],
   );
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;

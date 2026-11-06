@@ -1,0 +1,162 @@
+[
+  {
+    "id": "m-cap",
+    "category": "apparel",
+    "name": "Kepuraitė su snapeliu",
+    "description": "Medvilninė kepuraitė su siuvinėtu EMSI logotipu, reguliuojamas dydis.",
+    "price": 12.99,
+    "featured": true,
+    "en": {
+      "name": "Baseball cap",
+      "description": "Cotton cap with an embroidered EMSI logo, adjustable size."
+    }
+  },
+  {
+    "id": "m-tshirt",
+    "category": "apparel",
+    "name": "Marškinėliai",
+    "description": "Minkšti 100 % medvilnės marškinėliai su EMSI logotipu.",
+    "price": 14.99,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "featured": true,
+    "en": {
+      "name": "T-shirt",
+      "description": "Soft 100% cotton T-shirt with the EMSI logo."
+    }
+  },
+  {
+    "id": "m-hoodie",
+    "category": "apparel",
+    "name": "Džemperis su gobtuvu",
+    "description": "Šiltas džemperis su gobtuvu ir kišene priekyje.",
+    "price": 34.99,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "en": {
+      "name": "Hoodie",
+      "description": "Warm hoodie with a front pocket."
+    }
+  },
+  {
+    "id": "m-beanie",
+    "category": "apparel",
+    "name": "Žieminė kepurė",
+    "description": "Megzta kepurė su atlenkiamu kraštu ir EMSI emblema.",
+    "price": 11.99,
+    "en": {
+      "name": "Beanie",
+      "description": "Knitted beanie with a folded brim and EMSI badge."
+    }
+  },
+  {
+    "id": "m-mug",
+    "category": "drinkware",
+    "name": "Puodelis",
+    "description": "Keraminis 350 ml puodelis, tinka indaplovei.",
+    "price": 8.99,
+    "en": {
+      "name": "Mug",
+      "description": "Ceramic 350 ml mug, dishwasher safe."
+    }
+  },
+  {
+    "id": "m-thermo",
+    "category": "drinkware",
+    "name": "Termo puodelis",
+    "description": "Nerūdijančio plieno 450 ml termo puodelis – kava išlieka karšta iki 4 val. Su juo kava degalinėje – pigiau.",
+    "price": 16.99,
+    "featured": true,
+    "en": {
+      "name": "Travel mug",
+      "description": "Stainless steel 450 ml travel mug keeps coffee hot for up to 4 h. Coffee at our stations is cheaper with it."
+    }
+  },
+  {
+    "id": "m-bottle",
+    "category": "drinkware",
+    "name": "Gertuvė",
+    "description": "Daugkartinė 600 ml gertuvė su sandariu dangteliu.",
+    "price": 9.99,
+    "en": {
+      "name": "Water bottle",
+      "description": "Reusable 600 ml bottle with a leak-proof lid."
+    }
+  },
+  {
+    "id": "m-umbrella",
+    "category": "accessories",
+    "name": "Skėtis",
+    "description": "Didelis automatinis skėtis žaliais ir baltais segmentais.",
+    "price": 19.99,
+    "en": {
+      "name": "Umbrella",
+      "description": "Large automatic umbrella in green and white panels."
+    }
+  },
+  {
+    "id": "m-tote",
+    "category": "accessories",
+    "name": "Pirkinių krepšys",
+    "description": "Tvirtas medžiaginis krepšys pirkiniams.",
+    "price": 6.99,
+    "en": {
+      "name": "Tote bag",
+      "description": "Sturdy fabric shopping bag."
+    }
+  },
+  {
+    "id": "m-keychain",
+    "category": "accessories",
+    "name": "Raktų pakabukas",
+    "description": "Metalinis pakabukas su EMSI logotipu.",
+    "price": 3.99,
+    "en": {
+      "name": "Keychain",
+      "description": "Metal keychain with the EMSI logo."
+    }
+  },
+  {
+    "id": "m-freshener",
+    "category": "car",
+    "name": "Automobilio kvapas",
+    "description": "Pakabinamas „Žaliosios girios“ kvapas, iki 6 savaičių.",
+    "price": 2.99,
+    "en": {
+      "name": "Car air freshener",
+      "description": "Hanging “Green forest” scent, lasts up to 6 weeks."
+    }
+  },
+  {
+    "id": "m-scraper",
+    "category": "car",
+    "name": "Ledo grandiklis su pirštine",
+    "description": "Grandiklis su šilta pirštine žiemos rytams.",
+    "price": 7.99,
+    "en": {
+      "name": "Ice scraper with mitt",
+      "description": "Ice scraper with a warm mitt for winter mornings."
+    }
+  },
+  {
+    "id": "m-phoneholder",
+    "category": "car",
+    "name": "Telefono laikiklis",
+    "description": "Magnetinis telefono laikiklis ventiliacijos grotelėms.",
+    "price": 12.49,
+    "en": {
+      "name": "Phone holder",
+      "description": "Magnetic phone holder for air vents."
+    }
+  }
+]

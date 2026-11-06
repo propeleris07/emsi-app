@@ -85,11 +85,15 @@ export interface OpeningHours {
   sunday: string;
 }
 
+export type StationRegion = 'vilnius' | 'kaunas' | 'klaipeda' | 'siauliai' | 'panevezys' | 'alytus' | 'marijampole';
+
 export interface Station {
   id: string;
   name: string;
   address: string;
   city: string;
+  /** Apskritis – žemėlapio regionų filtrui. */
+  region: StationRegion;
   lat: number;
   lng: number;
   phone: string;
@@ -130,7 +134,7 @@ export interface CompetitorStation {
 
 // ---------- Pirkimai ----------
 
-export type TransactionCategory = 'fuel' | 'carwash' | 'food' | 'coffee' | 'subscription';
+export type TransactionCategory = 'fuel' | 'carwash' | 'food' | 'coffee' | 'subscription' | 'merch';
 
 export type PaymentMethodKind = 'app' | 'plate' | 'fleet' | 'cashier';
 
@@ -402,4 +406,36 @@ export interface FuelingSession {
   odometerKm?: number;
   startedAt: string;
   transactionId?: string;
+}
+
+// ---------- Atributika ----------
+
+export type MerchCategory = 'apparel' | 'drinkware' | 'accessories' | 'car';
+
+export interface MerchProduct {
+  id: string;
+  category: MerchCategory;
+  name: string;
+  description: string;
+  price: number;
+  /** Dydžiai (drabužiams); jei nėra – vienas dydis. */
+  sizes?: string[];
+  /** Rodoma katalogo viršuje. */
+  featured?: boolean;
+}
+
+export interface CartLine {
+  productId: string;
+  size?: string;
+  qty: number;
+}
+
+export interface MerchOrder {
+  id: string;
+  /** Kodas, kurį reikia parodyti kasoje atsiimant prekes. */
+  pickupCode: string;
+  stationId: string;
+  stationName: string;
+  transactionId: string;
+  createdAt: string;
 }

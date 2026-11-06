@@ -12,7 +12,7 @@ import { formatLitres, formatMoney, formatPricePerL } from '@/utils/format';
 import { lastMonthKeys, monthKey, monthShort, monthTitle } from '@/utils/months';
 
 type Totals = Record<TransactionCategory, number>;
-const empty = (): Totals => ({ fuel: 0, carwash: 0, food: 0, coffee: 0, subscription: 0 });
+const empty = (): Totals => ({ fuel: 0, carwash: 0, food: 0, coffee: 0, subscription: 0, merch: 0 });
 
 export default function StatsScreen() {
   const { t } = useTranslation();

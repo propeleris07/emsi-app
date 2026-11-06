@@ -7,7 +7,8 @@
     "seeAll": "Visi",
     "demoBadge": "DEMONSTRACINĖ VERSIJA",
     "close": "Uždaryti",
-    "copied": "Nukopijuota į iškarpinę"
+    "copied": "Nukopijuota į iškarpinę",
+    "clear": "Išvalyti"
   },
   "tabs": {
     "home": "Pradžia",
@@ -137,7 +138,8 @@
     "carwash": "Plovykla",
     "food": "Kava ir maistas",
     "plate": "Pagal numerį",
-    "alerts": "Kainų signalai"
+    "alerts": "Kainų signalai",
+    "merchBody": "Kepuraitės, puodeliai ir kt. – atsiimk degalinėje"
   },
   "pay": {
     "title": "Mokėti už kurą",
@@ -231,11 +233,12 @@
     "foodHint": "Spaudukų kortelė, meniu, kavos abonementas",
     "plateHint": "Mokėk automatiškai pagal valstybinį numerį",
     "alertsHint": "Pranešimas, kai kaina nukris",
-    "settingsHint": "Profilis, kortelės, pranešimai, kalba, privatumas"
+    "settingsHint": "Profilis, kortelės, pranešimai, kalba, privatumas",
+    "merchHint": "Prekės su EMSI ženklu"
   },
   "stations": {
     "title": "Degalinės",
-    "search": "Miestas ar adresas",
+    "search": "Miestas, gatvė ar degalinė",
     "list": "Sąrašas",
     "map": "Žemėlapis",
     "priceFor": "Kaina:",
@@ -254,7 +257,14 @@
     "saturday": "VI",
     "sunday": "VII",
     "phone": "Telefonas",
-    "payHere": "Mokėti čia už kurą"
+    "payHere": "Mokėti čia už kurą",
+    "allLithuania": "Visa Lietuva · {{count}}",
+    "myLocation": "Mano vieta",
+    "showAll": "Rodyti visas",
+    "found_one": "{{count}} degalinė",
+    "found_few": "{{count}} degalinės",
+    "found_many": "{{count}} degalinių",
+    "found_other": "{{count}} degalinių"
   },
   "services": {
     "open24h": "24/7",
@@ -343,7 +353,8 @@
     "carwash": "Plovimas",
     "food": "Maistas",
     "coffee": "Kava",
-    "subscription": "Abonementai"
+    "subscription": "Abonementai",
+    "merch": "Atributika"
   },
   "stats": {
     "last6": "Paskutiniai 6 mėnesiai",
@@ -398,7 +409,8 @@
     "shareMessage": "Dovanoju tau EMSI plovimą „{{name}}“! Plovykloje įvesk kodą {{code}}. Galioja iki {{date}}.",
     "redeemDemo": "Demo: panaudoti plovykloje",
     "redeemedTitle": "Plovimas pradėtas",
-    "redeemedBody": "Kodas priimtas. Gero plovimo!"
+    "redeemedBody": "Kodas priimtas. Gero plovimo!",
+    "heroTitle": "Švarus automobilis be laukimo"
   },
   "subs": {
     "perMonth": "{{price}}/mėn.",
@@ -446,7 +458,9 @@
       "hotfood": "Karštas maistas",
       "snack": "Užkandžiai",
       "drink": "Gėrimai"
-    }
+    },
+    "heroTitle": "Šviežia kava kelionei",
+    "heroSubtitle": "Su EMSI kortele – {{pct}} % pigiau"
   },
   "plate": {
     "title": "Mokėjimas pagal numerį",
@@ -638,5 +652,52 @@
       "q": "Kaip ištrinti savo duomenis?",
       "a": "Nustatymuose → „Privatumas ir duomenys“ gali gauti duomenų kopiją arba ištrinti paskyrą."
     }
+  },
+  "merch": {
+    "title": "EMSI atributika",
+    "intro": "Kepuraitės, marškinėliai, puodeliai ir kitos prekės su EMSI ženklu. Užsisakyk programėlėje ir atsiimk pasirinktoje degalinėje.",
+    "cat": {
+      "all": "Visos",
+      "apparel": "Drabužiai",
+      "drinkware": "Puodeliai",
+      "accessories": "Aksesuarai",
+      "car": "Automobiliui"
+    },
+    "popular": "Populiaru",
+    "addToCart": "Į krepšelį",
+    "cartButton": "Krepšelis ({{count}}) · {{amount}}",
+    "demoNote": "Prekės ir kainos – demonstracinės.",
+    "photoSoon": "Nuotrauka netrukus",
+    "chooseSize": "Pasirink dydį",
+    "addAmount": "Į krepšelį · {{amount}}",
+    "size": "Dydis",
+    "quantity": "Kiekis",
+    "pickupNote": "Prekes atsiimsi pasirinktoje EMSI degalinėje, parodęs atsiėmimo kodą kasoje. Užsakymas paruošiamas per 2 darbo dienas.",
+    "less": "Mažiau",
+    "more": "Daugiau",
+    "cart": "Krepšelis",
+    "orderedTitle": "Užsakymas priimtas!",
+    "orderedBody": "Prekės lauks degalinėje {{station}} per 2 darbo dienas.",
+    "pickupCode": "Atsiėmimo kodas",
+    "pickupHint": "Parodyk šį kodą kasoje, kai atsiimsi prekes.",
+    "viewReceipt": "Peržiūrėti kvitą",
+    "backToShop": "Grįžti į atributiką",
+    "emptyTitle": "Krepšelis tuščias",
+    "emptyBody": "Išsirink prekių iš EMSI atributikos katalogo.",
+    "totalItems_one": "Iš viso {{count}} prekė",
+    "totalItems_few": "Iš viso {{count}} prekės",
+    "totalItems_many": "Iš viso {{count}} prekės",
+    "totalItems_other": "Iš viso {{count}} prekių",
+    "pickupStation": "Atsiėmimo degalinė",
+    "change": "Keisti"
+  },
+  "regions": {
+    "vilnius": "Vilniaus",
+    "kaunas": "Kauno",
+    "klaipeda": "Klaipėdos",
+    "siauliai": "Šiaulių",
+    "panevezys": "Panevėžio",
+    "alytus": "Alytaus",
+    "marijampole": "Marijampolės"
   }
 }

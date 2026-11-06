@@ -47,7 +47,7 @@ export default function Phone() {
           gap: spacing.sm,
         }}
       >
-        <Text variant="h3" tone="muted">
+        <Text variant="h3" tone="muted" numberOfLines={1} style={{ flexShrink: 0 }}>
           🇱🇹 +370
         </Text>
         <TextInput

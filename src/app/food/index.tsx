@@ -4,7 +4,8 @@ import { Alert } from '@/utils/alert';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { Button, Chip, Screen, SectionHeader, SubscriptionCard, Surface, Text } from '@/components';
+import { Button, Chip, PhotoBanner, Screen, SectionHeader, SubscriptionCard, Surface, Text } from '@/components';
+import { photos } from '@/config/images';
 import { useCardRules } from '@/hooks/useCardRules';
 import { useLang } from '@/hooks/useLang';
 import type { MenuItem, StampCard } from '@/models';
@@ -73,7 +74,7 @@ function StampCardView({ card, onAdd, onRedeem }: { card: StampCard; onAdd: () =
 export default function Food() {
   const { t } = useTranslation();
   const lang = useLang();
-  const { spacing } = useTheme();
+  const { colors, spacing } = useTheme();
   const rules = useCardRules();
   const userId = useSession((s) => s.user?.id);
   const [menu, setMenu] = useState<MenuItem[]>([]);
@@ -92,6 +93,8 @@ export default function Food() {
 
   return (
     <Screen>
+      <PhotoBanner source={photos.coffee} title={t('food.heroTitle')} subtitle={t('food.heroSubtitle', { pct })} height={160} />
+
       {stamps && userId ? (
         <StampCardView
           card={stamps}
@@ -115,7 +118,7 @@ export default function Food() {
       <Text variant="small" tone="muted">
         {t('food.menuNote', { pct })}
       </Text>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: spacing.sm }} style={{ marginHorizontal: -spacing.lg, paddingHorizontal: spacing.lg }}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: spacing.sm, paddingHorizontal: spacing.lg, paddingVertical: 6 }} style={{ marginHorizontal: -spacing.lg, marginVertical: -6 }}>
         {CATS.map((c) => (
           <Chip key={c} label={t(`food.cat.${c}`)} selected={cat === c} onPress={() => setCat(c)} />
         ))}
@@ -126,7 +129,7 @@ export default function Food() {
           return (
             <View
               key={m.id}
-              style={{ flexDirection: 'row', alignItems: 'center', padding: spacing.lg, gap: spacing.md, borderTopWidth: i ? 1 : 0, borderTopColor: 'rgba(127,127,127,0.15)' }}
+              style={{ flexDirection: 'row', alignItems: 'center', padding: spacing.lg, gap: spacing.md, borderTopWidth: i ? 1 : 0, borderTopColor: colors.border }}
             >
               <View style={{ flex: 1 }}>
                 <Text variant="bodyStrong">{m.name}</Text>

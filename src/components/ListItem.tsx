@@ -3,6 +3,7 @@ import { Pressable, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '@/theme';
 import { touchTarget } from '@/config/theme';
+import { outlineIcon } from '@/utils/icons';
 import { Text } from './Text';
 
 interface Props {
@@ -30,22 +31,22 @@ export function ListItem({ title, subtitle, icon, iconColor, right, onPress, che
         gap: spacing.md,
         minHeight: touchTarget + 8,
         paddingHorizontal: spacing.lg,
-        paddingVertical: spacing.sm,
+        paddingVertical: spacing.md,
         backgroundColor: pressed ? colors.surfaceAlt : 'transparent',
       })}
     >
       {icon ? (
         <View
           style={{
-            width: 38,
-            height: 38,
-            borderRadius: radius.sm,
+            width: 40,
+            height: 40,
+            borderRadius: radius.sm + 2,
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: destructive ? colors.dangerSoft : colors.primarySoft,
           }}
         >
-          <Ionicons name={icon} size={20} color={tint} />
+          <Ionicons name={outlineIcon(icon)} size={20} color={tint} />
         </View>
       ) : null}
       <View style={{ flex: 1 }}>
@@ -53,13 +54,13 @@ export function ListItem({ title, subtitle, icon, iconColor, right, onPress, che
           {title}
         </Text>
         {subtitle ? (
-          <Text variant="small" tone="muted">
+          <Text variant="small" tone="muted" style={{ marginTop: 1 }}>
             {subtitle}
           </Text>
         ) : null}
       </View>
       {right}
-      {chevron ? <Ionicons name="chevron-forward" size={20} color={colors.textMuted} /> : null}
+      {chevron ? <Ionicons name="chevron-forward" size={18} color={colors.tabInactive} /> : null}
     </Pressable>
   );
 }

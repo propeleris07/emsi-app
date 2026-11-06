@@ -68,10 +68,12 @@ Norėdami pradėti iš naujo: **Daugiau → Nustatymai → Atsijungti** (arba **
 |---|---|
 | **Logotipas** | `assets/logo.png` – pakeiskite failą tuo pačiu pavadinimu (rekomenduojama ~490×203 px, permatomas fonas). Jei proporcijos kitos – pataisykite `RATIO` faile `src/components/Logo.tsx`. |
 | **Programėlės ikona ir užsklanda** | `assets/icon.png`, `assets/splash-icon.png`, `assets/android-icon-*.png`; pavadinimas – `app.json` (`expo.name`). |
-| **Spalvos, šriftų dydžiai, tarpai** | `src/config/theme.ts` – prekės ženklo spalvos `brand`, šviesi (`light`) ir tamsi (`dark`) paletės. |
+| **Spalvos, šriftų dydžiai, tarpai, šešėliai** | `src/config/theme.ts` – prekės ženklo spalvos `brand` (žalia `#08783D`, geltona `#FFD21F`, šviesiai pilka `#F5F6F5`, tekstas `#202824`), šviesi (`light`) ir tamsi (`dark`) paletės, gradientai, apvalinimai (`radius`) ir šešėliai (`makeShadows`). |
+| **Nuotraukos** (pasiūlymai, kava, plovykla) | Failai `assets/images/`, susiejimas – `src/config/images.ts` (`OFFER_PHOTOS` – kuri nuotrauka kuriam pasiūlymui). |
+| **Atributika** | Prekės – `src/data/merch.json`; nuotraukos – žr. skyrelį „Atributikos nuotraukos“ žemiau. |
 | **Funkcijų jungikliai** | `src/config/featureFlags.ts` – pvz. `competitorPriceComparison: true` įjungia kainų palyginimą su konkurentais. |
 | **Tekstai (LT / EN)** | `src/i18n/lt.json`, `src/i18n/en.json`. |
-| **Degalinės** | `src/data/stations.json` (adresai, koordinatės, darbo laikas, paslaugos, kolonėlių skaičius, kainų skirtumas `priceOffset`). |
+| **Degalinės** | `src/data/stations.json` – 50 tikrų EMSI degalinių adresų ir koordinačių (iš viešo sąrašo emsi.lt, 2026-11); `region` – apskritis žemėlapio filtrui. Darbo laikas, paslaugos, telefonai, kolonėlių skaičius ir kainų skirtumas `priceOffset` – demonstraciniai. |
 | **Kainos** | `src/data/prices.json` – bazinės tinklo kainos €/l. |
 | **Kortelių nuolaidos** | `src/data/cardRules.json` – bendra, studento, ūkininko, verslo. |
 | **Pasiūlymai, kuponai, akcijų dienos** | `src/data/offers.json` (`validDays` – kiek dienų nuo šiandien galioja; `weekday` – akcijų diena; `en` – vertimas). |
@@ -84,7 +86,36 @@ Norėdami pradėti iš naujo: **Daugiau → Nustatymai → Atsijungti** (arba **
 | **Mokėti/pylimo greitis demonstracijoje** | `src/services/mock/fueling.ts` (`LITRES_PER_SECOND`). |
 | **Pilno bako rezervacija** | `src/config/payments.ts` |
 
-> Pastaba apie spalvas: paimtos iš viešo EMSI logotipo (žalia, raudona, geltona, mėlyna). Tikslius prekės ženklo kodus (HEX) reikėtų pasitikslinti su EMSI dizaino vadovu.
+> Pastaba apie spalvas: pagrindinė žalia, geltona, pilka ir teksto spalva – pagal užsakovo nurodytus kodus; raudona ir mėlyna – iš viešo EMSI logotipo.
+
+### Atributikos nuotraukos
+
+Kol nuotraukos neįkeltos, atributikos kataloge rodomas žalias rezervinis paveikslėlis su ikona ir užrašu „Nuotrauka netrukus“.
+
+1. Įkelkite nuotrauką į `assets/merch/` (geriausia kvadratinė, ~1000×1000 px, JPG ar PNG), pvz. `cap.jpg`.
+2. Faile `src/config/merchImages.ts` pridėkite eilutę su prekės ID iš `src/data/merch.json`:
+   ```ts
+   'm-cap': require('../../assets/merch/cap.jpg'),
+   ```
+3. Išsaugokite – nuotrauka atsiras katalogo kortelėje, prekės puslapyje ir krepšelyje.
+
+### Nuotraukų autoriai
+
+Visos nuotraukos – iš [Unsplash](https://unsplash.com), naudojamos pagal nemokamą [Unsplash License](https://unsplash.com/license) (leidžiamas komercinis naudojimas, autoriaus nurodyti nebūtina, bet mandagu):
+
+| Failas | Autorius |
+|---|---|
+| `coffee.jpg` | Shannon Douglas |
+| `coffee-leaf.jpg` | Alexandr Popadin |
+| `coffee-togo.jpg` | Kelly Sikkema |
+| `hotdog.jpg` | Ball Park Brand |
+| `croissant.jpg` | Conor Brown |
+| `drink.jpg` | Julia D'Alkmin |
+| `carwash.jpg` | Clarence Tioh |
+| `fuel.jpg` | engin akyurt |
+| `road.jpg` | Anees Ur Rehman |
+
+Žemėlapis naršyklėje – © [OpenStreetMap](https://www.openstreetmap.org/copyright) bendraautoriai (Leaflet biblioteka). Viešai programėlei su dideliu srautu reikėtų komercinio žemėlapių tiekėjo (OSM serverių naudojimo taisyklės riboja apkrovą).
 
 ---
 
@@ -93,6 +124,8 @@ Norėdami pradėti iš naujo: **Daugiau → Nustatymai → Atsijungti** (arba **
 ```
 emsi-app/
 ├─ assets/                  logotipas, ikonos
+│  ├─ images/               nuotraukos (Unsplash)
+│  └─ merch/                čia įkelkite atributikos nuotraukas
 ├─ src/
 │  ├─ app/                  ekranai (expo-router: kiekvienas failas – ekranas)
 │  │  ├─ auth/              registracija: telefonas → SMS → sutikimai → kortelė
@@ -102,6 +135,7 @@ emsi-app/
 │  │  ├─ stations/ prices/  žemėlapis, degalinės, kainos, kainų signalai
 │  │  ├─ carwash/ food/     plovykla, kava ir maistas
 │  │  ├─ plate/ fleet/      mokėjimas pagal numerį, verslo režimas
+│  │  ├─ merch/             atributika: katalogas, prekė, krepšelis
 │  │  └─ settings/          profilis, kortelės, pranešimai, privatumas, pagalba, D.U.K.
 │  ├─ components/           bendri UI komponentai
 │  ├─ config/               tema, funkcijų jungikliai
@@ -209,8 +243,9 @@ Prototipas parodo produktą ir vartotojo kelią. Toliau – darbai, kad program�
 ---
 
 ## 7. Žinomi prototipo apribojimai
-- Visi duomenys – demonstraciniai. Degalinių adresai, kainos, meniu ir konkurentai sugalvoti.
+- Duomenys demonstraciniai: kainos, meniu, atributika, konkurentai, degalinių darbo laikas ir paslaugos sugalvoti. Tikri tik degalinių adresai ir koordinatės.
 - Duomenys laikomi tik telefone (AsyncStorage). Ištrynus Expo Go duomenis, jie dingsta.
 - Pylimas pagreitintas (~2,6 l/s), kad nereikėtų laukti.
 - Kvitų eilutės lietuviškos ir anglų kalbos režime, nes kvitas yra fiskalinis dokumentas.
-- Naršyklėje (`npx expo start --web`) programėlė veikia tik testavimui: žemėlapis ir pranešimai rodomi tik telefone.
+- Naršyklėje (`npx expo start --web`) žemėlapis rodomas per OpenStreetMap; telefono pranešimai rodomi tik kaip naršyklės langeliai.
+- Atributikos užsakymas – demonstracinis: pinigai nenuskaitomi, prekės niekur nesiunčiamos.

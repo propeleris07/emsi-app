@@ -2,13 +2,14 @@ import { View, type ColorValue } from 'react-native';
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@/theme';
 
 type IconName = keyof typeof Ionicons.glyphMap;
 
 export default function TabsLayout() {
   const { t } = useTranslation();
-  const { colors } = useTheme();
+  const { colors, shadows, isDark } = useTheme();
 
   const icon = (name: IconName, outline: IconName) => {
     function TabIcon({ color, focused, size }: { color: ColorValue; focused: boolean; size: number }) {
@@ -23,8 +24,8 @@ export default function TabsLayout() {
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.tabInactive,
-        tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border },
-        tabBarLabelStyle: { fontSize: 12, fontWeight: '600' },
+        tabBarStyle: { backgroundColor: colors.surface, borderTopWidth: isDark ? 1 : 0, borderTopColor: colors.border, ...shadows.lg },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
       }}
     >
       <Tabs.Screen name="index" options={{ title: t('tabs.home'), tabBarIcon: icon('home', 'home-outline') }} />
@@ -33,17 +34,15 @@ export default function TabsLayout() {
         options={{
           title: t('tabs.pay'),
           tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 20,
-                backgroundColor: focused ? colors.primaryPressed : colors.primary,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Ionicons name="speedometer" size={22} color={colors.onPrimary} />
+            <View style={[{ width: 44, height: 44, borderRadius: 22, marginTop: -6, transform: [{ scale: focused ? 1.06 : 1 }] }, shadows.md]}>
+              <LinearGradient
+                colors={colors.primaryGradient}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{ flex: 1, borderRadius: 22, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colors.surface }}
+              >
+                <Ionicons name="speedometer" size={22} color={colors.onPrimary} />
+              </LinearGradient>
             </View>
           ),
         }}

@@ -7,7 +7,8 @@
     "seeAll": "See all",
     "demoBadge": "DEMO VERSION",
     "close": "Close",
-    "copied": "Copied to clipboard"
+    "copied": "Copied to clipboard",
+    "clear": "Clear"
   },
   "tabs": {
     "home": "Home",
@@ -137,7 +138,8 @@
     "carwash": "Car wash",
     "food": "Coffee & food",
     "plate": "Pay by plate",
-    "alerts": "Price alerts"
+    "alerts": "Price alerts",
+    "merchBody": "Caps, mugs and more – pick up at a station"
   },
   "pay": {
     "title": "Pay for fuel",
@@ -231,11 +233,12 @@
     "foodHint": "Stamp card, menu, coffee subscription",
     "plateHint": "Pay automatically by number plate",
     "alertsHint": "Get notified when prices drop",
-    "settingsHint": "Profile, cards, notifications, language, privacy"
+    "settingsHint": "Profile, cards, notifications, language, privacy",
+    "merchHint": "Branded EMSI products"
   },
   "stations": {
     "title": "Stations",
-    "search": "City or address",
+    "search": "City, street or station",
     "list": "List",
     "map": "Map",
     "priceFor": "Price:",
@@ -254,7 +257,12 @@
     "saturday": "Sat",
     "sunday": "Sun",
     "phone": "Phone",
-    "payHere": "Pay for fuel here"
+    "payHere": "Pay for fuel here",
+    "allLithuania": "All Lithuania · {{count}}",
+    "myLocation": "My location",
+    "showAll": "Show all",
+    "found_one": "{{count}} station",
+    "found_other": "{{count}} stations"
   },
   "services": {
     "open24h": "24/7",
@@ -343,7 +351,8 @@
     "carwash": "Car wash",
     "food": "Food",
     "coffee": "Coffee",
-    "subscription": "Subscriptions"
+    "subscription": "Subscriptions",
+    "merch": "Merchandise"
   },
   "stats": {
     "last6": "Last 6 months",
@@ -396,7 +405,8 @@
     "shareMessage": "Here's an EMSI “{{name}}” car wash for you! Enter code {{code}} at the car wash. Valid until {{date}}.",
     "redeemDemo": "Demo: use at the car wash",
     "redeemedTitle": "Wash started",
-    "redeemedBody": "Code accepted. Enjoy the wash!"
+    "redeemedBody": "Code accepted. Enjoy the wash!",
+    "heroTitle": "A clean car without the wait"
   },
   "subs": {
     "perMonth": "{{price}}/month",
@@ -440,7 +450,9 @@
       "hotfood": "Hot food",
       "snack": "Snacks",
       "drink": "Drinks"
-    }
+    },
+    "heroTitle": "Fresh coffee for the road",
+    "heroSubtitle": "{{pct}}% cheaper with your EMSI card"
   },
   "plate": {
     "title": "Pay by number plate",
@@ -632,5 +644,50 @@
       "q": "How do I delete my data?",
       "a": "In Settings → “Privacy and data” you can get a copy of your data or delete your account."
     }
+  },
+  "merch": {
+    "title": "EMSI merchandise",
+    "intro": "Caps, T-shirts, mugs and more with the EMSI brand. Order in the app and pick up at the station you choose.",
+    "cat": {
+      "all": "All",
+      "apparel": "Clothing",
+      "drinkware": "Mugs",
+      "accessories": "Accessories",
+      "car": "For your car"
+    },
+    "popular": "Popular",
+    "addToCart": "Add to cart",
+    "cartButton": "Cart ({{count}}) · {{amount}}",
+    "demoNote": "Products and prices are for demo purposes.",
+    "photoSoon": "Photo coming soon",
+    "chooseSize": "Choose a size",
+    "addAmount": "Add to cart · {{amount}}",
+    "size": "Size",
+    "quantity": "Quantity",
+    "pickupNote": "Pick up your items at the chosen EMSI station by showing the pickup code at the till. Orders are ready within 2 working days.",
+    "less": "Less",
+    "more": "More",
+    "cart": "Cart",
+    "orderedTitle": "Order placed!",
+    "orderedBody": "Your items will be waiting at {{station}} within 2 working days.",
+    "pickupCode": "Pickup code",
+    "pickupHint": "Show this code at the till when you pick up your items.",
+    "viewReceipt": "View receipt",
+    "backToShop": "Back to merchandise",
+    "emptyTitle": "Your cart is empty",
+    "emptyBody": "Pick something from the EMSI merchandise catalogue.",
+    "totalItems_one": "{{count}} item in total",
+    "totalItems_other": "{{count}} items in total",
+    "pickupStation": "Pickup station",
+    "change": "Change"
+  },
+  "regions": {
+    "vilnius": "Vilnius",
+    "kaunas": "Kaunas",
+    "klaipeda": "Klaipėda",
+    "siauliai": "Šiauliai",
+    "panevezys": "Panevėžys",
+    "alytus": "Alytus",
+    "marijampole": "Marijampolė"
   }
 }

@@ -143,7 +143,7 @@ export async function addTransaction(tx: Transaction): Promise<void> {
 
 export function computeSavings(list: Transaction[], now = new Date()): SavingsSummary {
   const year = String(now.getFullYear());
-  const byCategory: Record<TransactionCategory, number> = { fuel: 0, carwash: 0, food: 0, coffee: 0, subscription: 0 };
+  const byCategory: Record<TransactionCategory, number> = { fuel: 0, carwash: 0, food: 0, coffee: 0, subscription: 0, merch: 0 };
   let thisYear = 0;
   let total = 0;
   for (const tx of list) {
