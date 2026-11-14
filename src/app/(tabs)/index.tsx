@@ -1,4 +1,5 @@
-import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useAppWidth } from '@/hooks/useAppWidth';
 import { useRouter } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
@@ -48,7 +49,7 @@ export default function Home() {
   const { t } = useTranslation();
   const router = useRouter();
   const lang = useLang();
-  const { width } = useWindowDimensions();
+  const width = useAppWidth();
   const { colors, spacing, radius, shadows } = useTheme();
   const card = useCardStore((s) => s.card);
   const rules = useCardRules();

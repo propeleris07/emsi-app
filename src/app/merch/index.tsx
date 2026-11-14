@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
-import { ScrollView, View, useWindowDimensions } from 'react-native';
+import { ScrollView, View } from 'react-native';
+import { useAppWidth } from '@/hooks/useAppWidth';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
@@ -76,7 +77,7 @@ export default function MerchCatalog() {
   const router = useRouter();
   const lang = useLang();
   const { spacing } = useTheme();
-  const { width } = useWindowDimensions();
+  const width = useAppWidth();
   const products = useMerchProducts();
   const { count, total } = useCartSummary(products);
   const [cat, setCat] = useState<Cat>('all');

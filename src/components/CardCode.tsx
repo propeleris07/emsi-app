@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { View, useWindowDimensions } from 'react-native';
+import { View } from 'react-native';
+import { useAppWidth } from '@/hooks/useAppWidth';
 import QRCode from 'react-native-qrcode-svg';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/theme';
@@ -17,7 +18,7 @@ interface Props {
 export function CardCode({ number, initialMode = 'qr' }: Props) {
   const { t } = useTranslation();
   const { colors, radius, spacing } = useTheme();
-  const { width } = useWindowDimensions();
+  const width = useAppWidth();
   const [mode, setMode] = useState(initialMode);
   const codeWidth = Math.min(width - 96, 320);
 

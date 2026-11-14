@@ -126,6 +126,9 @@ export const typography = {
   price: { family: 'display' as const, italic: true, fontSize: 30, fontWeight: '700' as const, fontVariant: ['tabular-nums' as const] },
 };
 
+/** Didžiausias programėlės plotis naršyklėje (platesniame lange ji centruojama). */
+export const APP_MAX_WIDTH = 480;
+
 /** Minimalus paspaudžiamo elemento aukštis (vienos rankos naudojimui). */
 export const touchTarget = 52;
 

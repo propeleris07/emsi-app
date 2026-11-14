@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
-import { View, useWindowDimensions } from 'react-native';
+import { View } from 'react-native';
+import { useAppWidth } from '@/hooks/useAppWidth';
 import { useTranslation } from 'react-i18next';
 import { BarChart, Screen, Surface, Text } from '@/components';
 import { useLang } from '@/hooks/useLang';
@@ -18,7 +19,7 @@ export default function StatsScreen() {
   const { t } = useTranslation();
   const lang = useLang();
   const { spacing, radius, colors } = useTheme();
-  const { width } = useWindowDimensions();
+  const width = useAppWidth();
   const { items } = useTransactions();
   const savings = useSavings();
   const months = useMemo(() => lastMonthKeys(6), []);

@@ -6,9 +6,9 @@ import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
 import { useFonts } from 'expo-font';
-import { DemoBadge } from '@/components';
+import { DemoBadge, DemoStrip } from '@/components';
 import { fontAssets, fonts } from '@/config/fonts';
-import { brand } from '@/config/theme';
+import { APP_MAX_WIDTH, brand } from '@/config/theme';
 import { ThemeProvider, useTheme } from '@/theme';
 import { configureNotifications } from '@/services/device/notifications';
 import { setServiceLanguage } from '@/services/locale';
@@ -16,7 +16,7 @@ import { useSession, useSettings, useStoresHydrated } from '@/store';
 
 function RootStack() {
   const { t } = useTranslation();
-  const { colors } = useTheme();
+  const { colors, shadows } = useTheme();
   const isLoggedIn = useSession((s) => s.isLoggedIn);
   const router = useRouter();
 
@@ -32,9 +32,12 @@ function RootStack() {
   }, [isLoggedIn, router]);
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.background }}>
+    // Naršyklėje plačiame lange programėlė rodoma telefono pločio stulpelyje.
+    <View style={{ flex: 1, backgroundColor: Platform.OS === 'web' ? colors.surfaceAlt : colors.background }}>
+    <View style={[{ flex: 1, width: '100%', backgroundColor: colors.background }, Platform.OS === 'web' && { maxWidth: APP_MAX_WIDTH, alignSelf: 'center', overflow: 'hidden', ...shadows.lg }]}>
       {/* Visų ekranų viršus žalias – būsenos juostos ženklai balti. */}
       <StatusBar style="light" />
+      {Platform.OS === 'web' ? <DemoStrip /> : null}
       <Stack
         screenOptions={{
           headerTransparent: false,
@@ -89,7 +92,8 @@ function RootStack() {
           <Stack.Screen name="settings/faq" options={{ title: t('settings.faq') }} />
         </Stack.Protected>
       </Stack>
-      <DemoBadge />
+      {Platform.OS === 'web' ? null : <DemoBadge />}
+    </View>
     </View>
   );
 }

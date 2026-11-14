@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ScrollView, View, useWindowDimensions } from 'react-native';
+import { ScrollView, View } from 'react-native';
+import { useAppWidth } from '@/hooks/useAppWidth';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Button, Chip, LineChart, PriceRow, Screen, Surface, Text } from '@/components';
@@ -16,7 +17,7 @@ export default function PricesScreen() {
   const { t } = useTranslation();
   const lang = useLang();
   const { spacing } = useTheme();
-  const { width } = useWindowDimensions();
+  const width = useAppWidth();
   const params = useLocalSearchParams<{ stationId?: string }>();
   const router = useRouter();
   const rules = useCardRules();
