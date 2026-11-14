@@ -37,5 +37,8 @@ export function Text({ variant = 'body', tone = 'default', center, font, style, 
         // „Inter“ pasvirusio failo neturime – jam paliekame sistemos pasvirimą.
         fontStyle: kind === 'body' && italic ? ('italic' as const) : ('normal' as const),
       };
-  return <RNText style={[base, { color }, center && { textAlign: 'center' }, style, face]} {...rest} />;
+  // Pakeitus šrifto dydį, eilutės aukštis skaičiuojamas iš naujo – kitaip dideli skaičiai
+  // paveldi varianto (mažo teksto) eilutės aukštį ir užlipa ant gretimų eilučių.
+  const leading = flat.fontSize && flat.lineHeight == null ? { lineHeight: Math.round(flat.fontSize * 1.22) } : null;
+  return <RNText style={[base, { color }, center && { textAlign: 'center' }, style, leading, face]} {...rest} />;
 }
