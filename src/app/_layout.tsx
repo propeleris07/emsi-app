@@ -5,7 +5,10 @@ import * as Notifications from 'expo-notifications';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
+import { useFonts } from 'expo-font';
 import { DemoBadge } from '@/components';
+import { fontAssets, fonts } from '@/config/fonts';
+import { brand } from '@/config/theme';
 import { ThemeProvider, useTheme } from '@/theme';
 import { configureNotifications } from '@/services/device/notifications';
 import { setServiceLanguage } from '@/services/locale';
@@ -13,7 +16,7 @@ import { useSession, useSettings, useStoresHydrated } from '@/store';
 
 function RootStack() {
   const { t } = useTranslation();
-  const { colors, isDark } = useTheme();
+  const { colors } = useTheme();
   const isLoggedIn = useSession((s) => s.isLoggedIn);
   const router = useRouter();
 
@@ -30,13 +33,15 @@ function RootStack() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <StatusBar style={isDark ? 'light' : 'dark'} />
+      {/* Visų ekranų viršus žalias – būsenos juostos ženklai balti. */}
+      <StatusBar style="light" />
       <Stack
         screenOptions={{
           headerTransparent: false,
-          headerStyle: { backgroundColor: colors.background },
-          headerTintColor: colors.primary,
-          headerTitleStyle: { color: colors.text },
+          headerStyle: { backgroundColor: brand.green },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: { color: '#FFFFFF', fontFamily: fonts.displayBold, fontSize: 17 },
+          headerTitleAlign: 'center',
           headerShadowVisible: false,
           headerBackButtonDisplayMode: 'minimal',
           // iOS jau turi slinkimo perėjimą; Android – suvienodiname.
@@ -98,7 +103,10 @@ export default function RootLayout() {
     if (i18n.language !== language) i18n.changeLanguage(language);
   }, [language]);
 
-  if (!hydrated) return null;
+  const [fontsLoaded, fontError] = useFonts(fontAssets);
+
+  // Jei šriftų įkelti nepavyko, rodome programėlę su sistemos šriftu.
+  if (!hydrated || (!fontsLoaded && !fontError)) return null;
 
   return (
     <ThemeProvider>

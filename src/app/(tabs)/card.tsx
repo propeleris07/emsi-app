@@ -52,10 +52,7 @@ export default function CardTab() {
   };
 
   return (
-    <Screen safeTop>
-      <Text variant="h1" style={{ marginTop: spacing.md }}>
-        {t('card.title')}
-      </Text>
+    <Screen hero={{ title: t('card.title') }}>
       <LoyaltyCardVisual card={card} />
 
       <Surface style={{ alignItems: 'center', gap: spacing.sm }}>

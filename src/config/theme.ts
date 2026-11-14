@@ -108,18 +108,22 @@ export const palettes = { light, dark };
 
 export const spacing = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 } as const;
 
-export const radius = { sm: 10, md: 16, lg: 20, xl: 24, pill: 999 } as const;
+export const radius = { sm: 10, md: 14, lg: 20, xl: 24, pill: 999 } as const;
 
+/**
+ * Teksto stiliai. `family: 'display'` – antraštių šriftas („Montserrat“), `body` – teksto („Inter“).
+ * Šriftų failai – `src/config/fonts.ts`.
+ */
 export const typography = {
-  hero: { fontSize: 40, lineHeight: 46, fontWeight: '800' as const, letterSpacing: -1 },
-  h1: { fontSize: 30, lineHeight: 36, fontWeight: '800' as const, letterSpacing: -0.6 },
-  h2: { fontSize: 22, lineHeight: 28, fontWeight: '700' as const, letterSpacing: -0.3 },
-  h3: { fontSize: 18, lineHeight: 24, fontWeight: '700' as const, letterSpacing: -0.2 },
-  body: { fontSize: 16, lineHeight: 22, fontWeight: '400' as const },
-  bodyStrong: { fontSize: 16, lineHeight: 22, fontWeight: '600' as const },
-  small: { fontSize: 14, lineHeight: 20, fontWeight: '400' as const },
-  caption: { fontSize: 12, lineHeight: 16, fontWeight: '600' as const },
-  price: { fontSize: 30, fontWeight: '800' as const, fontVariant: ['tabular-nums' as const] },
+  hero: { family: 'display' as const, italic: true, fontSize: 40, lineHeight: 42, fontWeight: '800' as const, letterSpacing: -1 },
+  h1: { family: 'display' as const, italic: true, fontSize: 28, lineHeight: 32, fontWeight: '800' as const, letterSpacing: -0.6 },
+  h2: { family: 'display' as const, italic: true, fontSize: 21, lineHeight: 26, fontWeight: '800' as const, letterSpacing: -0.3 },
+  h3: { family: 'body' as const, fontSize: 18, lineHeight: 24, fontWeight: '700' as const, letterSpacing: -0.2 },
+  body: { family: 'body' as const, fontSize: 16, lineHeight: 22, fontWeight: '400' as const },
+  bodyStrong: { family: 'body' as const, fontSize: 16, lineHeight: 22, fontWeight: '600' as const },
+  small: { family: 'body' as const, fontSize: 14, lineHeight: 20, fontWeight: '400' as const },
+  caption: { family: 'body' as const, fontSize: 12, lineHeight: 16, fontWeight: '600' as const },
+  price: { family: 'display' as const, italic: true, fontSize: 30, fontWeight: '700' as const, fontVariant: ['tabular-nums' as const] },
 };
 
 /** Minimalus paspaudžiamo elemento aukštis (vienos rankos naudojimui). */

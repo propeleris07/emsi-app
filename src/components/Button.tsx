@@ -1,6 +1,5 @@
 import { ActivityIndicator, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '@/theme';
 import { touchTarget } from '@/config/theme';
@@ -35,6 +34,8 @@ export function Button({ title, onPress, variant = 'primary', size = 'md', icon,
   const height = size === 'lg' ? 60 : touchTarget;
   const isDisabled = disabled || loading;
   const elevation = variant === 'primary' || variant === 'accent' ? shadows.md : variant === 'secondary' ? shadows.sm : null;
+  // Dideli pagrindiniai mygtukai – antraščių šriftu, kaip prekės ženklo šūkiai.
+  const display = size === 'lg' && (variant === 'primary' || variant === 'accent');
 
   return (
     <PressableScale
@@ -50,7 +51,7 @@ export function Button({ title, onPress, variant = 'primary', size = 'md', icon,
         styles.base,
         {
           height,
-          borderRadius: size === 'lg' ? radius.lg : radius.md,
+          borderRadius: radius.md,
           backgroundColor: pressed ? palette.pressed : palette.bg,
           borderColor: palette.border,
           opacity: isDisabled ? 0.5 : 1,
@@ -59,27 +60,19 @@ export function Button({ title, onPress, variant = 'primary', size = 'md', icon,
         style,
       ]}
     >
-      {({ pressed }) => (
-        <>
-          {variant === 'primary' && !pressed ? (
-            <LinearGradient
-              colors={colors.primaryGradient}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={[StyleSheet.absoluteFill, { borderRadius: size === 'lg' ? radius.lg : radius.md }]}
-            />
-          ) : null}
-          {loading ? (
-            <ActivityIndicator color={palette.fg} />
-          ) : (
-            <View style={styles.row}>
-              {icon ? <Ionicons name={icon} size={size === 'lg' ? 22 : 20} color={palette.fg} /> : null}
-              <Text variant={size === 'lg' ? 'h3' : 'bodyStrong'} style={{ color: palette.fg }} numberOfLines={1}>
-                {title}
-              </Text>
-            </View>
-          )}
-        </>
+      {loading ? (
+        <ActivityIndicator color={palette.fg} />
+      ) : (
+        <View style={styles.row}>
+          {icon ? <Ionicons name={icon} size={size === 'lg' ? 24 : 20} color={palette.fg} /> : null}
+          <Text
+            variant={display ? 'h2' : 'bodyStrong'}
+            style={{ color: palette.fg, fontWeight: display ? '800' : size === 'lg' ? '700' : '600', fontSize: display ? 19 : size === 'lg' ? 17 : 16 }}
+            numberOfLines={1}
+          >
+            {title}
+          </Text>
+        </View>
       )}
     </PressableScale>
   );

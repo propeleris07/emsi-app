@@ -78,7 +78,7 @@ export function OfferCard({ offer, activated, onPress, onActivate, activating, w
           ) : null}
         </View>
         <View style={{ position: 'absolute', left: spacing.lg, right: spacing.lg, bottom: spacing.md }}>
-          <Text style={{ color: '#fff', fontSize: 26, lineHeight: 30, fontWeight: '800', letterSpacing: -0.5 }} numberOfLines={1}>
+          <Text variant="h1" style={{ color: '#fff', fontSize: 26, lineHeight: 30 }} numberOfLines={1}>
             {offer.discountLabel}
           </Text>
         </View>

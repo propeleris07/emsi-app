@@ -1,21 +1,21 @@
 import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
+import * as Haptics from 'expo-haptics';
 import QRCode from 'react-native-qrcode-svg';
 import Svg, { Path } from 'react-native-svg';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import {
-  Button,
+  BrandHeader,
   CompetitorBanner,
+  Divider,
+  FuelBadge,
   isPromoToday,
   Logo,
   OfferCard,
   OpenStatus,
   PressableScale,
-  PriceRow,
   Screen,
   SectionHeader,
   Surface,
@@ -31,32 +31,23 @@ import { useSavings } from '@/hooks/useSavings';
 import { useCardStore } from '@/store';
 import { useTheme } from '@/theme';
 import { openDirections } from '@/utils/directions';
-import { formatDistance, formatMoney } from '@/utils/format';
-import type { IconName } from '@/utils/icons';
-import { FUEL_ORDER } from '@/utils/pricing';
+import { formatDistance, formatMoney, formatPricePerL } from '@/utils/format';
+import { cardPrice, FUEL_ORDER } from '@/utils/pricing';
+
+type MciName = keyof typeof MaterialCommunityIcons.glyphMap;
 
 function greetingKey(): string {
   const h = new Date().getHours();
   return h < 11 ? 'home.morning' : h < 18 ? 'home.day' : 'home.evening';
 }
 
-const HERO_HEIGHT = 290;
-
-/** Geltonos „bangos“ dekoracija kortelės kampe. */
-function YellowSwoosh({ width, height }: { width: number; height: number }) {
-  return (
-    <Svg width={width} height={height} viewBox="0 0 200 100" preserveAspectRatio="none" style={{ position: 'absolute', right: 0, bottom: 0 }}>
-      <Path d="M200 18 C150 40 95 70 40 100 L200 100 Z" fill={brand.yellow} opacity={0.22} />
-      <Path d="M200 52 C165 66 130 84 96 100 L200 100 Z" fill={brand.yellow} opacity={0.55} />
-    </Svg>
-  );
-}
+/** Kiek kortelė „užlipa“ ant žalios antraštės. */
+const CARD_OVERLAP = 64;
 
 export default function Home() {
   const { t } = useTranslation();
   const router = useRouter();
   const lang = useLang();
-  const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const { colors, spacing, radius, shadows } = useTheme();
   const card = useCardStore((s) => s.card);
@@ -71,179 +62,222 @@ export default function Home() {
         .sort((a, b) => FUEL_ORDER.indexOf(a.fuel) - FUEL_ORDER.indexOf(b.fuel))
     : [];
 
-  const quick: { icon: IconName; title: string; sub: string; href: string }[] = [
-    { icon: 'location', title: t('home.quick.stations'), sub: t('home.quick.stationsSub'), href: '/stations' },
-    { icon: 'pricetag', title: t('home.quick.prices'), sub: t('home.quick.pricesSub'), href: '/prices' },
-    { icon: 'gift', title: t('home.quick.offers'), sub: t('home.quick.offersSub'), href: '/offers' },
-    { icon: 'card', title: t('home.quick.card'), sub: t('home.quick.cardSub'), href: '/card' },
-    { icon: 'water', title: t('home.quick.carwash'), sub: t('home.quick.carwashSub'), href: '/carwash' },
-    { icon: 'car', title: t('home.quick.plate'), sub: t('home.quick.plateSub'), href: '/plate' },
-    { icon: 'notifications', title: t('home.quick.alerts'), sub: t('home.quick.alertsSub'), href: '/prices/alerts' },
-    { icon: 'shirt', title: t('home.quick.merch'), sub: t('home.quick.merchSub'), href: '/merch' },
+  const quick: { icon: MciName; label: string; href: string }[] = [
+    { icon: 'map-marker-outline', label: t('home.stations'), href: '/stations' },
+    { icon: 'tag-outline', label: t('home.prices'), href: '/prices' },
+    { icon: 'ticket-percent-outline', label: t('tabs.offers'), href: '/offers' },
+    { icon: 'car-wash', label: t('home.carwash'), href: '/carwash' },
+    { icon: 'coffee-outline', label: t('home.foodShort'), href: '/food' },
+    { icon: 'card-text-outline', label: t('home.plateShort'), href: '/plate' },
+    { icon: 'bell-ring-outline', label: t('home.alertsShort'), href: '/prices/alerts' },
+    { icon: 'tshirt-crew-outline', label: t('home.merchShort'), href: '/merch' },
   ];
-  const tileWidth = (Math.min(width, 520) - spacing.lg * 2 - spacing.sm * 3) / 4;
+  const contentWidth = Math.min(width, 560) - spacing.lg * 2;
 
   return (
-    <Screen padded={false} refreshing={loading} onRefresh={reload}>
-      {/* Žalia antraštė su degalinės nuotrauka ir banguotu kraštu */}
-      <View style={{ height: insets.top + HERO_HEIGHT, overflow: 'hidden' }}>
-        <LinearGradient colors={['#0B8C48', brand.green, '#05592D']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
-        <View style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '68%' }}>
-          <Image source={photos.station} style={StyleSheet.absoluteFill} contentFit="cover" transition={300} />
-          {/* Nuotrauka švelniai susilieja su žalia spalva kairėje */}
-          <LinearGradient
-            colors={[brand.green, 'rgba(8,120,61,0.55)', 'rgba(8,120,61,0)']}
-            locations={[0, 0.4, 1]}
-            start={{ x: 0, y: 0.5 }}
-            end={{ x: 1, y: 0.5 }}
-            style={StyleSheet.absoluteFill}
-          />
-        </View>
-        <Svg width="100%" height={56} viewBox="0 0 400 56" preserveAspectRatio="none" style={{ position: 'absolute', left: 0, right: 0, bottom: -1 }}>
-          <Path d="M0 56 L0 30 C120 62 260 -6 400 22 L400 56 Z" fill={colors.background} />
-        </Svg>
-        <View style={{ paddingTop: insets.top + spacing.md, paddingHorizontal: spacing.lg, gap: spacing.md }}>
+    <Screen padded={false} refreshing={loading} onRefresh={reload} contentStyle={{ gap: 0 }}>
+      <BrandHeader
+        size="hero"
+        height={236}
+        title={t(greetingKey()).replace(' ', '\n')}
+        top={
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <View style={[{ backgroundColor: '#fff', borderRadius: radius.md, paddingHorizontal: 12, paddingVertical: 8 }, shadows.sm]}>
-              <Logo height={26} />
+            <View style={{ backgroundColor: '#fff', borderRadius: radius.sm, paddingHorizontal: 10, paddingVertical: 6 }}>
+              <Logo height={22} />
             </View>
             <Pressable
               accessibilityRole="button"
               accessibilityLabel={t('settings.notifications')}
               onPress={() => router.push('/settings/notifications')}
               hitSlop={8}
-              style={({ pressed }) => ({ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.14)' })}
+              style={({ pressed }) => ({ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.14)' })}
             >
-              <Ionicons name="notifications-outline" size={22} color="#fff" />
+              <MaterialCommunityIcons name="bell-outline" size={22} color="#fff" />
             </Pressable>
           </View>
-          <Text variant="h1" style={{ color: '#fff', marginTop: spacing.sm, maxWidth: '62%' }}>
-            {t(greetingKey())}
-          </Text>
-        </View>
-      </View>
+        }
+      />
 
-      <View style={{ paddingHorizontal: spacing.lg, gap: spacing.lg, marginTop: -72 }}>
+      <View style={{ paddingHorizontal: spacing.lg, gap: spacing.lg, marginTop: -CARD_OVERLAP }}>
         {/* Nuolaidų kortelė su QR kodu */}
         {card ? (
-          <PressableScale onPress={() => router.push('/card-code')} accessibilityRole="button" accessibilityLabel={t('card.showCode')} scaleTo={0.98}>
-            <Surface elevation="md" style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md, overflow: 'hidden', paddingVertical: spacing.lg }}>
-              <YellowSwoosh width={180} height={70} />
-              <View style={{ flex: 1, gap: 2 }}>
-                <Text variant="small" tone="primary" style={{ fontWeight: '700' }}>
+          <Surface
+            elevation="md"
+            onPress={() => router.push('/card-code')}
+            accessibilityLabel={t('card.showCode')}
+            style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md, padding: spacing.lg }}
+          >
+            <View style={{ flex: 1 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.sm }}>
+                <MaterialCommunityIcons name="credit-card-outline" size={24} color={colors.primary} />
+                <Text variant="bodyStrong" style={{ fontWeight: '700', flex: 1, fontSize: 15, lineHeight: 19 }} numberOfLines={2}>
                   {t('home.myDiscountCard')}
                 </Text>
-                <Text variant="h2" style={{ fontStyle: 'italic', fontWeight: '800' }}>
-                  {t(`cardType.${card.type}`)}
-                </Text>
-                {savings ? (
-                  <Text variant="small" tone="muted">
-                    {t('home.savedShort', { amount: formatMoney(savings.thisYear, lang) })}
-                  </Text>
-                ) : null}
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 4 }}>
-                  <Ionicons name="qr-code-outline" size={14} color={colors.primary} />
-                  <Text variant="small" tone="primary" style={{ fontWeight: '600' }}>
-                    {t('card.showCode')}
-                  </Text>
-                </View>
               </View>
-              <View style={[{ backgroundColor: '#fff', borderRadius: radius.md, padding: 8 }, shadows.sm]}>
-                <QRCode value={card.number} size={64} ecl="L" />
-              </View>
-            </Surface>
-          </PressableScale>
-        ) : null}
-
-        {/* Pagrindinis veiksmas */}
-        <Button title={t('home.payForFuel')} icon="speedometer" size="lg" onPress={() => router.push('/pay')} />
-
-        {/* Greitosios funkcijos */}
-        <SectionHeader title={t('home.quickTitle')} />
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm }}>
-          {quick.map((q) => (
-            <Surface
-              key={q.href}
-              onPress={() => router.push(q.href as never)}
-              style={{ width: tileWidth, alignItems: 'center', gap: 6, paddingVertical: spacing.md, paddingHorizontal: 4, borderRadius: radius.md }}
-            >
-              <Ionicons name={q.icon} size={28} color={colors.primary} />
-              <View style={{ alignItems: 'center' }}>
-                <Text variant="caption" style={{ fontWeight: '700', fontSize: 12.5 }} center numberOfLines={1}>
-                  {q.title}
-                </Text>
-                <Text variant="caption" tone="muted" style={{ fontWeight: '500', fontSize: 11.5 }} center numberOfLines={1}>
-                  {q.sub}
-                </Text>
-              </View>
-            </Surface>
-          ))}
-        </View>
-
-        {/* Geltona kavos akcija */}
-        <PressableScale onPress={() => router.push('/food')} accessibilityRole="button" scaleTo={0.98} style={[{ borderRadius: radius.xl, overflow: 'hidden' }, shadows.md]}>
-          <LinearGradient colors={['#FFE36B', brand.yellow]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 150, flexDirection: 'row' }}>
-            <Svg width="100%" height="100%" viewBox="0 0 300 150" preserveAspectRatio="none" style={StyleSheet.absoluteFill}>
-              <Path d="M150 150 C190 110 240 120 300 70 L300 150 Z" fill={brand.green} opacity={0.9} />
-              <Path d="M120 150 C170 125 230 135 300 100 L300 150 Z" fill="#0B8C48" opacity={0.5} />
-            </Svg>
-            <View style={{ flex: 1, padding: spacing.lg, justifyContent: 'center', gap: 4 }}>
-              <Text style={{ fontSize: 26, lineHeight: 30, fontWeight: '800', color: brand.green, letterSpacing: -0.5 }}>{t('home.coffeePromoTitle')}</Text>
-              <Text variant="small" style={{ color: brand.ink }}>
-                {t('home.coffeePromoBody')}
+              <Text variant="small" tone="muted" style={{ marginTop: 2, marginLeft: 32 }}>
+                {t(`cardType.${card.type}`)}
+              </Text>
+              <View style={{ height: 1, backgroundColor: colors.border, marginVertical: spacing.md }} />
+              <Text variant="caption" tone="muted">
+                {t('home.savedLabel')}
+              </Text>
+              <Text style={{ fontSize: 24, lineHeight: 30, fontWeight: '800', color: colors.primary, fontVariant: ['tabular-nums'] }}>
+                {formatMoney(savings?.thisYear ?? 0, lang)}
               </Text>
             </View>
-            <View style={{ width: '42%', justifyContent: 'center', paddingRight: spacing.md }}>
-              <Image source={photos.coffeeToGo} style={{ width: '100%', aspectRatio: 1, borderRadius: radius.lg, borderWidth: 3, borderColor: '#fff' }} contentFit="cover" />
-            </View>
-            <View style={[{ position: 'absolute', right: 12, bottom: 12, width: 36, height: 36, borderRadius: 18, backgroundColor: brand.yellow, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#fff' }, shadows.sm]}>
-              <Ionicons name="chevron-forward" size={20} color={brand.ink} />
-            </View>
-          </LinearGradient>
-        </PressableScale>
-
-        {/* Artimiausia degalinė */}
-        {nearest ? (
-          <Surface style={{ gap: spacing.md }}>
-            <View style={{ flexDirection: 'row', gap: spacing.md, alignItems: 'flex-start' }}>
-              <View style={{ width: 44, height: 44, borderRadius: radius.sm + 2, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name="location" size={22} color={colors.primary} />
+            <View style={{ alignItems: 'center', gap: 6 }}>
+              <View style={{ backgroundColor: '#fff', borderRadius: radius.sm, padding: 6 }}>
+                <QRCode value={card.number} size={88} ecl="L" />
               </View>
-              <View style={{ flex: 1, gap: 2 }}>
-                <Text variant="caption" tone="primary" style={{ textTransform: 'uppercase', letterSpacing: 0.6 }}>
-                  {locationSource === 'device' ? t('home.nearest') : t('home.nearestDefault')}
-                </Text>
-                <Text variant="h3">{nearest.name}</Text>
-                <Text variant="small" tone="muted">
-                  {nearest.address} · {formatDistance(nearest.distanceKm, lang)}
-                </Text>
-                <OpenStatus station={nearest} />
-              </View>
-            </View>
-            <View style={{ backgroundColor: colors.surfaceAlt, borderRadius: radius.md, paddingHorizontal: spacing.md, paddingVertical: 2 }}>
-              {nearestPrices.map((p) => (
-                <PriceRow key={p.fuel} price={p} rules={rules} compact />
-              ))}
-            </View>
-            <CompetitorBanner stationId={nearest.id} />
-            <View style={{ flexDirection: 'row', gap: spacing.sm }}>
-              <Button
-                title={t('stations.navigate')}
-                icon="navigate-outline"
-                variant="secondary"
-                style={{ flex: 1, backgroundColor: colors.primarySoft }}
-                onPress={() => openDirections(nearest, t)}
-              />
-              <Button
-                title={t('home.allStations')}
-                icon="map-outline"
-                variant="secondary"
-                style={{ flex: 1, backgroundColor: colors.primarySoft }}
-                onPress={() => router.push('/stations')}
-              />
+              <Text variant="caption" tone="primary">
+                {t('home.tapToEnlarge')}
+              </Text>
             </View>
           </Surface>
         ) : null}
+
+        {/* Pagrindinis veiksmas */}
+        <PressableScale
+          accessibilityRole="button"
+          onPress={() => {
+            Haptics.selectionAsync().catch(() => {});
+            router.push('/pay');
+          }}
+          style={({ pressed }) => [
+            { height: 64, borderRadius: radius.md, backgroundColor: pressed ? colors.primaryPressed : colors.primary, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: spacing.md },
+            shadows.md,
+          ]}
+        >
+          <MaterialCommunityIcons name="gas-station-outline" size={30} color={colors.onPrimary} />
+          <Text variant="h2" style={{ color: colors.onPrimary, fontSize: 22 }}>
+            {t('home.payForFuel')}
+          </Text>
+        </PressableScale>
+
+        {/* Greitosios funkcijos – be rėmelių, vienodo stiliaus ikonos */}
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', rowGap: spacing.lg }}>
+          {quick.map((q) => (
+            <PressableScale
+              key={q.href}
+              accessibilityRole="button"
+              onPress={() => router.push(q.href as never)}
+              scaleTo={0.92}
+              style={{ width: contentWidth / 4, alignItems: 'center', gap: 6, paddingVertical: 4 }}
+            >
+              <MaterialCommunityIcons name={q.icon} size={32} color={colors.text} />
+              <Text variant="caption" style={{ fontWeight: '700', fontSize: 12.5 }} center numberOfLines={1}>
+                {q.label}
+              </Text>
+            </PressableScale>
+          ))}
+        </View>
+
+        {/* Artimiausia degalinė */}
+        {nearest ? (
+          <Surface padded={false}>
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => router.push(`/stations/${nearest.id}`)}
+              style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', gap: spacing.md, padding: spacing.lg, opacity: pressed ? 0.7 : 1 })}
+            >
+              <View style={{ width: 46, height: 46, borderRadius: 23, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' }}>
+                <MaterialCommunityIcons name="map-marker-outline" size={24} color={colors.primary} />
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text variant="caption" tone="primary" style={{ textTransform: 'uppercase', letterSpacing: 0.6 }}>
+                  {locationSource === 'device' ? t('home.nearest') : t('home.nearestDefault')}
+                </Text>
+                <Text variant="h3" numberOfLines={1}>
+                  {nearest.name}
+                </Text>
+                <Text variant="small" tone="muted" numberOfLines={1}>
+                  {nearest.address} · {formatDistance(nearest.distanceKm, lang)}
+                </Text>
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={24} color={colors.tabInactive} />
+            </Pressable>
+            <Divider inset={spacing.lg} />
+            {/* Kainos su kortele */}
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: spacing.lg, paddingVertical: spacing.md, rowGap: spacing.md }}>
+              {nearestPrices.map((p) => {
+                const withCard = cardPrice(p.pricePerL, p.fuel, rules);
+                return (
+                  <View key={p.fuel} style={{ width: '50%', flexDirection: 'row', alignItems: 'center', gap: spacing.sm }}>
+                    <FuelBadge fuel={p.fuel} size={36} />
+                    <View>
+                      <Text variant="price" style={{ fontSize: 22, lineHeight: 26 }}>
+                        {formatPricePerL(withCard, lang)}
+                      </Text>
+                      {withCard < p.pricePerL ? (
+                        <Text variant="caption" tone="muted" style={{ textDecorationLine: 'line-through', fontWeight: '500' }}>
+                          {formatPricePerL(p.pricePerL, lang)}
+                        </Text>
+                      ) : null}
+                    </View>
+                  </View>
+                );
+              })}
+            </View>
+            <View style={{ paddingHorizontal: spacing.lg, paddingBottom: spacing.sm, gap: spacing.sm }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <OpenStatus station={nearest} />
+                <Text variant="caption" tone="muted">
+                  {t('home.pricesWithCard')}
+                </Text>
+              </View>
+              <CompetitorBanner stationId={nearest.id} />
+            </View>
+            <Divider />
+            <View style={{ flexDirection: 'row' }}>
+              {(
+                [
+                  { icon: 'navigation-variant-outline', label: t('stations.navigate'), onPress: () => openDirections(nearest, t) },
+                  { icon: 'map-outline', label: t('home.allStations'), onPress: () => router.push('/stations') },
+                ] as const
+              ).map((a, i) => (
+                <Pressable
+                  key={a.icon}
+                  accessibilityRole="button"
+                  onPress={a.onPress}
+                  style={({ pressed }) => ({
+                    flex: 1,
+                    height: 52,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: spacing.sm,
+                    borderLeftWidth: i ? 1 : 0,
+                    borderLeftColor: colors.border,
+                    backgroundColor: pressed ? colors.surfaceAlt : 'transparent',
+                    borderBottomLeftRadius: i ? 0 : radius.lg,
+                    borderBottomRightRadius: i ? radius.lg : 0,
+                  })}
+                >
+                  <MaterialCommunityIcons name={a.icon} size={20} color={colors.primary} />
+                  <Text variant="bodyStrong" tone="primary" style={{ fontWeight: '700' }}>
+                    {a.label}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </Surface>
+        ) : null}
+
+        {/* Kavos akcija: geltona plokštuma su įstrižu kirpimu ir nuotrauka */}
+        <PressableScale onPress={() => router.push('/food')} accessibilityRole="button" scaleTo={0.98} style={[{ height: 148, borderRadius: radius.lg, overflow: 'hidden', backgroundColor: brand.yellow }, shadows.sm]}>
+          <Image source={photos.promoCoffee} style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '64%' }} contentFit="cover" contentPosition="right" transition={250} />
+          <Svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" style={StyleSheet.absoluteFill}>
+            <Path d="M0 0 L62 0 L42 100 L0 100 Z" fill={brand.yellow} />
+          </Svg>
+          <View style={{ flex: 1, justifyContent: 'center', paddingLeft: spacing.lg, width: '52%', gap: 4 }}>
+            <Text variant="h1" style={{ color: brand.ink, fontSize: 25, lineHeight: 27 }}>
+              {t('home.coffeePromoTitle')}
+            </Text>
+            <Text variant="caption" style={{ color: brand.ink, fontWeight: '600' }}>
+              {t('home.coffeePromoBody')}
+            </Text>
+          </View>
+        </PressableScale>
 
         {/* Pasiūlymai */}
         {offers.length ? (

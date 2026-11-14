@@ -15,10 +15,7 @@ export default function MoreTab() {
   const user = useSession((s) => s.user);
 
   return (
-    <Screen safeTop>
-      <Text variant="h1" style={{ marginTop: spacing.md }}>
-        {t('more.title')}
-      </Text>
+    <Screen hero={{ title: t('more.title') }}>
       {user ? (
         <Surface onPress={() => router.push('/settings/profile')} style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md }}>
           <View style={{ width: 52, height: 52, borderRadius: 26, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' }}>

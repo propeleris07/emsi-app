@@ -62,13 +62,7 @@ export default function PayTab() {
   };
 
   return (
-    <Screen safeTop>
-      <View style={{ marginTop: spacing.md, gap: 4 }}>
-        <Text variant="caption" tone="primary" style={{ textTransform: 'uppercase', letterSpacing: 0.5 }}>
-          {t('pay.step', { n: 1, total: 3 })}
-        </Text>
-        <Text variant="h1">{t('pay.title')}</Text>
-      </View>
+    <Screen hero={{ title: t('pay.title'), eyebrow: t('pay.step', { n: 1, total: 3 }) }}>
 
       {fleet.account ? (
         <View style={{ flexDirection: 'row', backgroundColor: colors.surfaceAlt, borderRadius: radius.md, padding: 4 }}>

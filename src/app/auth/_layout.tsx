@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import { brand } from '@/config/theme';
 import { useTheme } from '@/theme';
 
 export const unstable_settings = { anchor: 'index' };
@@ -10,8 +11,8 @@ export default function AuthLayout() {
       screenOptions={{
         headerTransparent: false,
         headerTitle: '',
-        headerStyle: { backgroundColor: colors.background },
-        headerTintColor: colors.primary,
+        headerStyle: { backgroundColor: brand.green },
+        headerTintColor: '#FFFFFF',
         headerShadowVisible: false,
         headerBackButtonDisplayMode: 'minimal',
         contentStyle: { backgroundColor: colors.background },

@@ -1,7 +1,7 @@
 import type { Offer } from '@/models';
 
 /**
- * Nuotraukos. Visos – nemokamos Unsplash nuotraukos (Unsplash License), autoriai nurodyti README.
+ * Nuotraukos: nemokamos Unsplash nuotraukos (Unsplash License) ir Canva sugeneruotos nuotraukos; šaltiniai – README.
  * Norėdami pakeisti – įdėkite savo failą į `assets/images/` ir pakeiskite kelią čia.
  */
 export const photos = {
@@ -14,8 +14,11 @@ export const photos = {
   carwash: require('../../assets/images/carwash.jpg'),
   fuel: require('../../assets/images/fuel.jpg'),
   road: require('../../assets/images/road.jpg'),
-  /** Pradžios ekrano viršus. Pakeiskite tikra EMSI degalinės nuotrauka (tas pats failo vardas). */
+  /** Pasisveikinimo ekrano viršus. Pakeiskite tikra EMSI degalinės nuotrauka (tas pats failo vardas). */
   station: require('../../assets/images/station.jpg'),
+  /** Canva sugeneruotos nuotraukos be jokių prekės ženklų. */
+  promoCoffee: require('../../assets/images/promo-coffee.jpg'),
+  promoHotdog: require('../../assets/images/promo-hotdog.jpg'),
 } satisfies Record<string, number>;
 
 export type PhotoKey = keyof typeof photos;
@@ -23,10 +26,10 @@ export type PhotoKey = keyof typeof photos;
 /** Konkretaus pasiūlymo nuotrauka (jei nenurodyta – pagal kategoriją). */
 const OFFER_PHOTOS: Record<string, PhotoKey> = {
   'promo-friday': 'fuel',
-  'promo-monday-coffee': 'coffee',
+  'promo-monday-coffee': 'promoCoffee',
   'coupon-coffee': 'coffeeToGo',
   'coupon-wash': 'carwash',
-  'coupon-hotdog': 'hotdog',
+  'coupon-hotdog': 'promoHotdog',
   'seg-student': 'coffeeLeaf',
   'seg-farmer': 'road',
   'coupon-adblue': 'fuel',

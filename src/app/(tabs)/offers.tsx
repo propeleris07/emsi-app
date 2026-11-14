@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Chip, EmptyState, OfferCard, OFFER_ICONS, Screen, SectionHeader, Text } from '@/components';
+import { Chip, EmptyState, OfferCard, OFFER_ICONS, Screen, SectionHeader } from '@/components';
 import { useOffers } from '@/hooks/useOffers';
 import type { Offer } from '@/models';
 import { useCardStore } from '@/store';
@@ -32,11 +32,7 @@ export default function OffersTab() {
   };
 
   return (
-    <Screen safeTop refreshing={loading} onRefresh={reload}>
-      <View style={{ marginTop: spacing.md, gap: 4 }}>
-        <Text variant="h1">{t('offers.title')}</Text>
-        <Text tone="muted">{t('offers.subtitle', { count: activated.length })}</Text>
-      </View>
+    <Screen hero={{ title: t('offers.title'), subtitle: t('offers.subtitle', { count: activated.length }) }} refreshing={loading} onRefresh={reload}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: spacing.sm }} style={{ marginHorizontal: -spacing.lg, paddingHorizontal: spacing.lg }}>
         {FILTERS.map((f) => (
           <Chip key={f} label={t(`offers.filter.${f}`)} icon={f === 'all' ? 'apps' : OFFER_ICONS[f]} selected={filter === f} onPress={() => setFilter(f)} />

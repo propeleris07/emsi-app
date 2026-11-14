@@ -30,3 +30,4 @@ export * from './LimitBar';
 export * from './Segmented';
 export * from './CompetitorBanner';
 export * from './MerchImage';
+export * from './BrandHeader';
