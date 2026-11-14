@@ -71,6 +71,7 @@ Norėdami pradėti iš naujo: **Daugiau → Nustatymai → Atsijungti** (arba **
 | **Spalvos, šriftų dydžiai, tarpai, šešėliai** | `src/config/theme.ts` – prekės ženklo spalvos `brand` (žalia `#08783D`, geltona `#FFD21F`, šviesiai pilka `#F5F6F5`, tekstas `#202824`), šviesi (`light`, numatytoji) ir tamsi (`dark`, įjungiama nustatymuose) paletės, gradientai, apvalinimai (`radius`) ir šešėliai (`makeShadows`). |
 | **Šriftai** | `src/config/fonts.ts` |
 | **Nuotraukos** (pasisveikinimo ekranas, pasiūlymai, kava, plovykla) | Failai `assets/images/`, susiejimas – `src/config/images.ts` (`OFFER_PHOTOS` – kuri nuotrauka kuriam pasiūlymui). |
+| **Kortelių dizainai** (Bendra, Studento, Ūkininko, Verslo) | Failai `assets/cards/` (`general.jpg`, `student.jpg`, `farmer.jpg`, `fleet.jpg`, 1200×757 px), susiejimas – `cardArt` faile `src/config/images.ts`. Tekstai kortelėse – paveikslėlio dalis (lietuviški). |
 | **Atributika** | Prekės – `src/data/merch.json`; nuotraukos – žr. skyrelį „Atributikos nuotraukos“ žemiau. |
 | **Funkcijų jungikliai** | `src/config/featureFlags.ts` – pvz. `competitorPriceComparison: true` įjungia kainų palyginimą su konkurentais. |
 | **Tekstai (LT / EN)** | `src/i18n/lt.json`, `src/i18n/en.json`. |

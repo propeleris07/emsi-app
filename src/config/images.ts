@@ -1,4 +1,4 @@
-import type { Offer } from '@/models';
+import type { CardType, Offer } from '@/models';
 
 /**
  * Nuotraukos: nemokamos Unsplash nuotraukos (Unsplash License) ir Canva sugeneruotos nuotraukos; šaltiniai – README.
@@ -48,3 +48,14 @@ export function offerPhoto(offer: Offer): number {
   return photos[OFFER_PHOTOS[offer.id] ?? CATEGORY_PHOTOS[offer.category]];
 }
 
+
+/**
+ * Nuolaidų kortelių dizainai pagal planą (1200×757 px, kampus apvalina programėlė).
+ * Norėdami pakeisti – įdėkite savo failą į `assets/cards/` tuo pačiu vardu.
+ */
+export const cardArt: Record<CardType, number> = {
+  general: require('../../assets/cards/general.jpg'),
+  student: require('../../assets/cards/student.jpg'),
+  farmer: require('../../assets/cards/farmer.jpg'),
+  fleet: require('../../assets/cards/fleet.jpg'),
+};
